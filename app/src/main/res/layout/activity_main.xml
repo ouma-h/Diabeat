@@ -43,33 +43,39 @@
                 android:id="@+id/textView6"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="65dp"
+                android:layout_marginBottom="5dp"
                 android:isScrollContainer="false"
                 android:keepScreenOn="false"
                 android:soundEffectsEnabled="false"
                 android:text="Username"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText5"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:ems="10"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:background="@drawable/rounded_edit_views"/>
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="65dp"
+                android:layout_marginBottom="5dp"
                 android:text="Password"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editText6"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:background="@drawable/rounded_edit_views"/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -79,17 +85,19 @@
                 android:layout_marginTop="10dp"
                 android:text="forgot your password?"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold"/>
+                android:textSize="10dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/login_button"
                 android:layout_width="129dp"
-                android:layout_height="wrap_content"
+                android:layout_height="33dp "
                 android:layout_marginTop="15dp"
                 android:text="Log in"
                 android:textStyle="normal"
                 android:textColor="@color/textButtonColor"
                 android:background="@drawable/round_button"
+                android:textSize="15dp"
                 />
 
             <TextView
