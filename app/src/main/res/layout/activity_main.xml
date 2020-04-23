@@ -33,65 +33,6 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="278dp"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="88dp"
-                    android:layout_height="wrap_content"
-                    android:text="Username" />
-
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textEmailAddress" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="88dp"
-                    android:layout_height="wrap_content"
-                    android:text="Password" />
-
-                <EditText
-                    android:id="@+id/editText6"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="forgot your password?" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="129dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Button" />
-
-                <TextView
-                    android:id="@+id/signupLabel"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Sign up for an account" />
-            </LinearLayout>
-
-=======
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView4">
@@ -168,12 +109,10 @@
                 android:text="Sign up for an account"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"/>
->>>>>>> d5bd0c65117ec782f568d01a047fc5e78050fc8d
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
-
 
