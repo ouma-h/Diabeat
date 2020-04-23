@@ -15,7 +15,5 @@ package="com.example.diabeat">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <!--<activity android:name=".onBoarding">
-    </activity>-->
 </application>
 </manifest>
