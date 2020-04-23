@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/signup" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -142,7 +143,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="3"
+            android:clickable="true"
             android:gravity="center_vertical"
+            android:onClick="onTextClick"
             android:text="Already have an account?"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
