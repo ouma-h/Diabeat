@@ -18,4 +18,8 @@ public class activity_login extends AppCompatActivity {
         Intent myIntent = new Intent(activity_login.this, SignUpActivity.class);
         startActivity(myIntent);
     }
+    public void onPRTextClick(View v) {
+        Intent prIntent = new Intent(activity_login.this, PasswordResetActivity.class);
+        startActivity(prIntent);
+    }
 }
