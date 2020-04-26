@@ -21,7 +21,7 @@ public class startup_screen extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent myIntent= new Intent(startup_screen.this, activity_login.class);
+                Intent myIntent= new Intent(startup_screen.this, onBoarding.class);
                 startActivity(myIntent);
 
             }
