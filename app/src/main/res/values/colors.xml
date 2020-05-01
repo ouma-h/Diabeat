@@ -6,6 +6,7 @@
     <color name="backgroundColor">#F3F3F3</color>
     <color name="textButtonColor">#F3F3F3</color>
     <color name="ButtonColor">#b1d2af</color>
+    <color name="white">#f2efe8</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

@@ -45,8 +45,7 @@
             android:layout_marginTop="0dp"
             android:background="@drawable/rounded_edit_views"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="10dp" />
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/passwordLabel"
@@ -65,8 +64,7 @@
             android:layout_marginTop="0dp"
             android:background="@drawable/rounded_edit_views"
             android:ems="10"
-            android:inputType="textPassword"
-            android:paddingLeft="10dp" />
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/repeatPasswordLabel"
@@ -85,8 +83,7 @@
             android:layout_marginTop="0dp"
             android:background="@drawable/rounded_edit_views"
             android:ems="10"
-            android:inputType="textPassword"
-            android:paddingLeft="10dp" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/button"
