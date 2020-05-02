@@ -11,7 +11,7 @@
         android:id="@+id/top_bg"
         android:layout_width="417dp"
         android:layout_height="146dp"
-android:paddingLeft="-5dp"
+        android:paddingLeft="-5dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -86,10 +86,10 @@ android:paddingLeft="-5dp"
                     android:id="@+id/imageView5"
                     android:layout_width="15dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/facebook"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="3"
+                    app:srcCompat="@drawable/pills" />
 
                 <LinearLayout
                     android:layout_width="150dp"
@@ -180,12 +180,12 @@ android:paddingLeft="-5dp"
                         />
 
                     <ImageView
-                        android:src="@drawable/plus_icon"
-                        android:scaleType="center"
-                        android:layout_gravity="left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/appointments" />
 
                 </LinearLayout>
 
@@ -222,12 +222,12 @@ android:paddingLeft="-5dp"
                         />
 
                     <ImageView
-                        android:src="@drawable/plus_icon"
-                        android:scaleType="center"
-                        android:layout_gravity="left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/prescription" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -262,12 +262,11 @@ android:paddingLeft="-5dp"
                         />
 
                     <ImageView
-                        android:src="@drawable/plus_icon"
-                        android:scaleType="center"
-                        android:layout_gravity="left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:src="@drawable/rx" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -302,12 +301,12 @@ android:paddingLeft="-5dp"
                         />
 
                     <ImageView
-                        android:src="@drawable/plus_icon"
-                        android:scaleType="center"
-                        android:layout_gravity="left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/history" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

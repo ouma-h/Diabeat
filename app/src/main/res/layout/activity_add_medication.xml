@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddMedication">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="10dp"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add new medication"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/label1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Medicine Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/passwordInput2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edit_views"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Medicine category"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/catSelector"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/inhaling" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/pills" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/cream" />
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/injection" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/label3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Amount"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/passwordInput3"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_edit_views"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/label4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="How long"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/passwordInput4"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_edit_views"
+                        android:ems="10" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/label6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Before/After eating"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/baSelector"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnBefore"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:gravity="center"
+                    android:text="Before"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/btnAfter"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:gravity="center"
+                    android:text="After"
+                    android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/label7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Frequency"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/freqSelector"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/morning" />
+
+                <ImageButton
+                    android:id="@+id/imageButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/noon" />
+
+                <ImageButton
+                    android:id="@+id/imageButton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.20"
+                    android:background="@drawable/round_button_white"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/night" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/round_button"
+                android:text="Submit"
+                android:textColor="@color/textButtonColor" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
