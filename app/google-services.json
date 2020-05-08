@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "494821804652",
+    "firebase_url": "https://diabeat-b8a38.firebaseio.com",
+    "project_id": "diabeat-b8a38",
+    "storage_bucket": "diabeat-b8a38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494821804652:android:c222897783f5a24c8d6649",
+        "android_client_info": {
+          "package_name": "com.example.diabeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494821804652-36hq4u69bfh2bsgas37al6ok0a4782db.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEyQrBa1JT7L-DG8C0KeC21u2yi5GOHx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494821804652-36hq4u69bfh2bsgas37al6ok0a4782db.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
