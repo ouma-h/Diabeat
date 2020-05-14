@@ -5,7 +5,9 @@ import com.example.diabeat.models.Medication;
 
 import java.util.List;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ProgramAPI {
@@ -15,4 +17,7 @@ public interface ProgramAPI {
 
     @GET("medications")
     Call<List<Medication>> getProgramMeds(@Query("prog_id") int prog_id);
+
+    @POST("medications")
+    Call<Medication> createMedication(@Body Medication med);
 }

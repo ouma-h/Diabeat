@@ -3,9 +3,11 @@ package com.example.diabeat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,26 +21,14 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import com.example.diabeat.apiBackend.RetrofitClientInstance;
 
 public class Programs extends AppCompatActivity {
-    private TextView resultView;
-    LinearLayout layoutparent;
-    private View v;
-    private LayoutInflater inflater;
     ProgramAPI apiHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programs);
-
-        resultView = findViewById(R.id.responseView);
-        layoutparent = findViewById(R.id.linearCards);
-        inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        v = inflater.inflate(R.layout.program_card, null);
-
         apiHolder = RetrofitClientInstance.getProgramAPI();
 
         displayPrograms();
@@ -50,9 +40,11 @@ public class Programs extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<List<ModelProgram>> call, Response<List<ModelProgram>> response) {
-                resultView.setText("code :"+ response.code()); // RESPONSE CODE FOR DEBUGGING
                 List<ModelProgram> programs = response.body();
                 for(final ModelProgram program : programs) {
+                    LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View v = vi.inflate(R.layout.program_card, null, false);
+
                     // Program title
                     TextView titleView = (TextView)v.findViewById(R.id.programCondition);
                     titleView.setText(program.getCondition());
@@ -66,17 +58,20 @@ public class Programs extends AppCompatActivity {
                     btnView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(getApplicationContext(),"ID: "+program.getCondition(),Toast.LENGTH_LONG).show();
+                            Intent spIntent = new Intent(Programs.this, ProgramSingle.class);
+                            spIntent.putExtra("PROG_ID", program.getId());
+                            startActivity(spIntent);
                         }
                     });
 
-                    layoutparent.addView(v);
+                    ViewGroup insertPoint = (ViewGroup) findViewById(R.id.linearCards);
+                    insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
                 }
             }
 
             @Override
             public void onFailure(Call<List<ModelProgram>> call, Throwable t) {
-                resultView.setText(t.getMessage());
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
