@@ -16,4 +16,9 @@ public class RetrofitClientInstance {
         }
         return retrofit;
     }
+    public static ProgramAPI getProgramAPI() {
+        Retrofit instance = RetrofitClientInstance.getRetrofitInstance();
+        ProgramAPI apiHolder = instance.create(ProgramAPI.class);
+        return apiHolder;
+    }
 }

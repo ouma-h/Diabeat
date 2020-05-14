@@ -21,12 +21,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.diabeat.apiBackend.RetrofitClientInstance;
 
 public class Programs extends AppCompatActivity {
     private TextView resultView;
     LinearLayout layoutparent;
     private View v;
     private LayoutInflater inflater;
+    ProgramAPI apiHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +39,11 @@ public class Programs extends AppCompatActivity {
         inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = inflater.inflate(R.layout.program_card, null);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://diabeatbackend.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ProgramAPI apiHolder = retrofit.create(ProgramAPI.class);
+        apiHolder = RetrofitClientInstance.getProgramAPI();
+
+        displayPrograms();
+    }
+    public void displayPrograms(){
         Call<List<ModelProgram>> call = apiHolder.getPrograms(3);
 
         call.enqueue(new Callback<List<ModelProgram>>() {
@@ -77,6 +79,5 @@ public class Programs extends AppCompatActivity {
                 resultView.setText(t.getMessage());
             }
         });
-
     }
 }
