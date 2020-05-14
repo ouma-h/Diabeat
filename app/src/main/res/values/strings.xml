@@ -2,4 +2,6 @@
     <string name="app_name">DiaBeat</string>
     <string name="password_reset_msg">Please enter your username and we will email you a link to reset your password.</string>
     <string name="edit_profile">ُEdit Profile</string>
+    <string name="username">ُusername</string>
+    <string name="send_email">send_email</string>
 </resources>
