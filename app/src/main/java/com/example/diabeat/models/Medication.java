@@ -5,19 +5,12 @@ import com.google.gson.annotations.SerializedName;
 public class Medication {
 
     private Integer id;
-    @SerializedName("name")
     private String name;
-    @SerializedName("amount")
     private Integer amount;
-    @SerializedName("category")
     private String category;
-    @SerializedName("duration")
     private Integer duration;
-    @SerializedName("duration_unit")
     private String duration_unit;
-    @SerializedName("isBefore")
     private Boolean isBefore;
-    @SerializedName("prog_id")
     private Integer prog_id;
 
     Medication() {
