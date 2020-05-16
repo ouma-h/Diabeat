@@ -26,20 +26,20 @@ import com.example.diabeat.models.User;
 
 public class Programs extends AppCompatActivity {
     ProgramAPI apiHolder;
-    User user;
+    int userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programs);
         apiHolder = RetrofitClientInstance.getProgramAPI();
-        user = MainActivity.getUserInfo(this);
+        userID = MainActivity.getUserInfo(this).getId();
         displayPrograms();
     }
     public void displayPrograms(){
 
 
 
-        Call<List<ModelProgram>> call = apiHolder.getPrograms(user.getId());
+        Call<List<ModelProgram>> call = apiHolder.getPrograms(userID);
 
         call.enqueue(new Callback<List<ModelProgram>>() {
 
