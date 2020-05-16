@@ -12,5 +12,7 @@
     <string name="sign_up_for_an_account">Sign up for an account</string>
     <string name="forgot_your_password">forgot your password?</string>
     <string name="password">Password</string>
+    <string name="health_status">Health Status</string>
+    <string name="hi_guest">Hi, Guest!</string>
 
 </resources>
