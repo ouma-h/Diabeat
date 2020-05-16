@@ -50,9 +50,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         birthday = findViewById(R.id.birthdayInput);
         findViewById(R.id.saveProfile).setOnClickListener(this);
 
-        //retrieving data and putting in the diff fields
         user = MainActivity.getUserInfo(this);
-        System.out.println("############## PASSWORD" +user.getBirthday());
+
         lastName.setText(user.getLast_name());
         firstName.setText(user.getFirst_name());
         birthday.setText(user.getBirthday());
