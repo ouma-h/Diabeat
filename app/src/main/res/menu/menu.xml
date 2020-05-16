@@ -6,17 +6,17 @@
         <item
             android:title="Profile"
             android:icon="@drawable/profile_icon"
-            android:id="@+id/nav-profile" />
+            android:id="@+id/nav_profile" />
 
         <item
             android:title="Records"
             android:icon="@drawable/record_icon"
-            android:id="@+id/nav-records" />
+            android:id="@+id/nav_records" />
 
         <item
             android:title="Settings"
             android:icon="@drawable/settings_icon"
-            android:id="@+id/nav-settings" />
+            android:id="@+id/nav_settings" />
     </group>
 
     <item android:title="Communication">

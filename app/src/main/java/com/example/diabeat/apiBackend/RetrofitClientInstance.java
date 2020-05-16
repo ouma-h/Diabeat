@@ -21,4 +21,10 @@ public class RetrofitClientInstance {
         ProgramAPI apiHolder = instance.create(ProgramAPI.class);
         return apiHolder;
     }
+
+    public static UserApi getUserApi() {
+        Retrofit mInstance = RetrofitClientInstance.getRetrofitInstance();
+        UserApi userApi=  mInstance.create(UserApi.class);
+        return userApi;
+    }
 }

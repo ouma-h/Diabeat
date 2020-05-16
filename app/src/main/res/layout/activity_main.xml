@@ -9,14 +9,13 @@
     tools:context=".MainActivity"
     tools:openDrawer="start" >
 
-    <com.google.android.material.navigation.NavigationView
+    <!--<com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_gravity="start"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
         app:headerLayout="@layout/header"
-        app:menu="@menu/menu"
-        tools:ignore="MissingConstraints" />
+        app:menu="@menu/menu" />-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,23 +42,24 @@
                 tools:ignore="RtlSymmetry" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/profile"
+                android:layout_width="32dp"
+                android:layout_height="31dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/menu_icon"
                 app:layout_constraintEnd_toEndOf="@id/top_bg"
                 app:layout_constraintHorizontal_bias="0.017"
                 app:layout_constraintStart_toStartOf="@id/top_bg"
-                app:layout_constraintTop_toTopOf="@id/top_bg" />
+                app:layout_constraintTop_toTopOf="@id/top_bg"
+                app:srcCompat="@drawable/profile_icon" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/userFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
-                android:text="Hi, Mounir!"
+                android:text="Hi, Guest!"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.197"
@@ -67,15 +67,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/currentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sat 25 April 2020"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.171"
+                app:layout_constraintHorizontal_bias="0.192"
                 app:layout_constraintStart_toStartOf="@+id/top_bg"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/userFirstName" />
 
             <LinearLayout
                 android:id="@+id/linearLayout3"

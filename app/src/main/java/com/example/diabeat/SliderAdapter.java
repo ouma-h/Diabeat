@@ -33,10 +33,10 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String[] slide_description = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor facilisis lectus vel sollicitudin. Integer tincidunt, sapien vitae pretium feugiat, lorem justo bibendum",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor facilisis lectus vel sollicitudin. Integer tincidunt, sapien vitae pretium feugiat, lorem justo bibendum",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor facilisis lectus vel sollicitudin. Integer tincidunt, sapien vitae pretium feugiat, lorem justo bibendum"
-    };
+            "Get an appointment with just one click",
+            "Get notified about your medications .",
+            "Track your blood pressure and temperature daily."
+        };
 
     @Override
     public int getCount() {

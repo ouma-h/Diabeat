@@ -32,7 +32,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
         android:orientation="vertical">
@@ -47,16 +47,17 @@ xmlns:android="http://schemas.android.com/apk/res/android">
             android:isScrollContainer="false"
             android:keepScreenOn="false"
             android:soundEffectsEnabled="false"
-            android:text="Username"
+            android:text="@string/username"
+            android:textSize="18sp"
             android:textColor="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/logInUserName"
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:background="@drawable/rounded_corners_edit_views"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/rounded_edit_views"/>
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/textView8"
@@ -65,50 +66,52 @@ xmlns:android="http://schemas.android.com/apk/res/android">
             android:layout_marginTop="10dp"
             android:layout_marginRight="65dp"
             android:layout_marginBottom="5dp"
-            android:text="Password"
+            android:textSize="18sp"
+            android:text="@string/password"
             android:textColor="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/logInPassword"
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:background="@drawable/rounded_corners_edit_views"
             android:ems="10"
-            android:inputType="textPassword"
-            android:background="@drawable/rounded_edit_views"/>
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="53dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="10dp"
             android:onClick="NavigateForgetMyPassword"
-            android:text="forgot your password?"
+            android:text="@string/forgot_your_password"
             android:textColor="@color/colorPrimary"
-            android:textSize="10dp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="53dp" />
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="129dp"
-            android:layout_height="33dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Log in"
-            android:textStyle="normal"
-            android:textColor="@color/textButtonColor"
             android:background="@drawable/round_button"
+            android:text="Log in"
+            android:textColor="@color/textButtonColor"
             android:textSize="15dp"
-            />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:clickable="true"
             android:onClick="navigateSignUp"
-            android:text="Sign up for an account"
+            android:text="@string/sign_up_for_an_account"
             android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 

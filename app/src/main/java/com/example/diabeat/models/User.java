@@ -1,49 +1,80 @@
 package com.example.diabeat.models;
 
 public class User {
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private String birthdate;
+    private Integer id;
+    private String username;
+    private String email;
+    private String first_name;
+    private String last_name;
+    private String birthday;
 
 
-    public String getFirstName() {
-        return firstName;
+    private String password;
+    private String authToken;
+
+
+    User() {
     }
 
-    public String getLastName() {
-        return lastName;
+    public User(String email, String password, String username) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public String getGender() {
-        return gender;
+    public User(String email, String password, String firstName, String lastName, String username) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.first_name = firstName;
+        this.last_name = lastName;
     }
 
-    public String getBirthdate() {
-        return birthdate;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {       this.firstName = firstName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public String getPassword() {
+        return password;
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public User(String firstName, String lastName, String gender, String birthdate ){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.birthdate = birthdate;
+
+    public void setBirthday(String birthdate) {
+        this.birthday = birthdate;
     }
 
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public Integer getId() { return id; }
 
 }
