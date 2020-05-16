@@ -6,13 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.diabeat.models.User;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class startup_screen extends AppCompatActivity {
 
     Timer timer;
-
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +25,19 @@ public class startup_screen extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent myIntent= new Intent(startup_screen.this, onBoarding.class);
-                startActivity(myIntent);
+                user = MainActivity.getUserInfo(startup_screen.this);
+                if (user != null ){
+                    Intent myIntent= new Intent(startup_screen.this, MainActivity.class);
+                    startActivity(myIntent);
+                }else{
+                    Intent myIntent= new Intent(startup_screen.this, onBoarding.class);
+                    startActivity(myIntent);
+                }
+                finish();
+
 
             }
         }, 3000);
+
     }
 }

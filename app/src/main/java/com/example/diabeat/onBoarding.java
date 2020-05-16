@@ -120,5 +120,6 @@ public class onBoarding extends AppCompatActivity {
     public void onButtonClick (View v){
         Intent myIntent = new Intent(onBoarding.this, activity_login.class);
         startActivity(myIntent);
+        finish();
     }
 }

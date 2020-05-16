@@ -54,8 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onResume() {
         super.onResume();
-        if(!userFirstName.equals(user.getFirst_name())){
+        if(!user.getFirst_name().equals(userFirstName)){
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
+        }else if (user.getFirst_name().equals("")){
+            userFirstName.setText(R.string.hi_guest);
         }
     }
 
