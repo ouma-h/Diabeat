@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +27,14 @@ import retrofit2.Response;
 
 public class ProgramSingle extends AppCompatActivity {
     ProgramAPI apiHolder;
+    private Integer progID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_single);
         apiHolder = RetrofitClientInstance.getProgramAPI();
-        displayMedications(getIntent().getIntExtra("PROG_ID",0));
+        progID = getIntent().getIntExtra("PROG_ID",0);
+        displayMedications(progID);
     }
     public void displayMedications(Integer progID){
         Call<List<Medication>> call = apiHolder.getProgramMeds(progID);
@@ -44,6 +47,28 @@ public class ProgramSingle extends AppCompatActivity {
                 for(final Medication med : meds) {
                     LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View v = vi.inflate(R.layout.medication_card, null, false);
+
+                    ImageView catIm = (ImageView) v.findViewById(R.id.imCategory);
+                    switch (med.getCategory()) {
+                        case "Inhaled":{
+                            catIm.setImageResource(R.drawable.inhaling);
+                            break;
+                        }
+                        case "Pills": {
+                            catIm.setImageResource(R.drawable.pills);
+                            break;
+                        }
+                        case "Lotion": {
+                            catIm.setImageResource(R.drawable.cream);
+                            break;
+                        }
+                        case "Syringe": {
+                            catIm.setImageResource(R.drawable.injection);
+                            break;
+                        }
+                        default:
+                            break;
+                    }
 
                     TextView textView = (TextView) v.findViewById(R.id.programCondition);
                     textView.setText(med.getName());
@@ -64,6 +89,7 @@ public class ProgramSingle extends AppCompatActivity {
     }
     public void newMed(View v){
         Intent addmedIntent = new Intent(ProgramSingle.this, AddMedication.class);
+        addmedIntent.putExtra("PROG_ID", progID);
         startActivity(addmedIntent);
     }
 }

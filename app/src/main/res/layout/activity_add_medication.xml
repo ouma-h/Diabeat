@@ -18,7 +18,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:id="@+id/title"
@@ -34,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Medicine Name"
+                android:text="Medicine Name:"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -52,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Medicine category"
+                android:text="Medicine category:"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -130,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Amount"
+                        android:text="Amount:"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp" />
 
@@ -156,7 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="How long"
+                        android:text="Duration( day(s) ):"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp" />
 
@@ -215,9 +217,107 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Frequency"
+                android:text="Frequency:"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:text="Days:" />
+
+            <LinearLayout
+                android:id="@+id/daysSelector"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <Button
+                    android:id="@+id/btnSUn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Sun" />
+
+                <Button
+                    android:id="@+id/btnMon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Mon" />
+
+                <Button
+                    android:id="@+id/btnTue"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Tue" />
+
+                <Button
+                    android:id="@+id/btnWed"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Wed" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/daysSelector2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+
+                <Button
+                    android:id="@+id/btnThu"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Thu" />
+
+                <Button
+                    android:id="@+id/btnFri"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Fri" />
+
+                <Button
+                    android:id="@+id/btnSat"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/round_button_white"
+                    android:text="Sat" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:text="Time:" />
 
             <LinearLayout
                 android:id="@+id/freqSelector"
@@ -226,40 +326,40 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/imageButton5"
+                <Button
+                    android:id="@+id/freqMorning"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.20"
                     android:background="@drawable/round_button_white"
+                    android:drawableTop="@drawable/morning"
                     android:padding="10dp"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
-                    app:srcCompat="@drawable/morning" />
+                    android:tint="@color/colorPrimary" />
 
-                <ImageButton
-                    android:id="@+id/imageButton6"
+                <Button
+                    android:id="@+id/freqMidDAy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.20"
                     android:background="@drawable/round_button_white"
+                    android:drawableTop="@drawable/noon"
                     android:padding="10dp"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
-                    app:srcCompat="@drawable/noon" />
+                    android:tint="@color/colorPrimary" />
 
-                <ImageButton
-                    android:id="@+id/imageButton7"
+                <Button
+                    android:id="@+id/freqNight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.20"
                     android:background="@drawable/round_button_white"
+                    android:drawableTop="@drawable/night"
                     android:padding="10dp"
                     android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
-                    app:srcCompat="@drawable/night" />
+                    android:tint="@color/colorPrimary" />
             </LinearLayout>
 
             <Button

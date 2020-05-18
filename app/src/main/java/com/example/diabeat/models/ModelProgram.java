@@ -38,4 +38,12 @@ public class ModelProgram {
     public List<Integer> getMeds() {
         return meds;
     }
+
+    public ModelProgram(String condition, Integer duration, String duration_unit, String start_date, Integer user_id) {
+        this.condition = condition;
+        this.duration = duration;
+        this.duration_unit = duration_unit;
+        this.start_date = start_date;
+        this.user_id = user_id;
+    }
 }
