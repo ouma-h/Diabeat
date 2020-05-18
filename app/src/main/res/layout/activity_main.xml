@@ -33,11 +33,11 @@
 
             <ImageView
                 android:id="@+id/profile"
-                android:layout_width="32dp"
+                android:layout_width="28dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="@id/top_bg"
-                app:layout_constraintHorizontal_bias="0.017"
+                app:layout_constraintHorizontal_bias="0.018"
                 app:layout_constraintStart_toStartOf="@id/top_bg"
                 app:layout_constraintTop_toTopOf="@id/top_bg"
                 app:srcCompat="@drawable/ic_profile" />
@@ -186,7 +186,9 @@
                         android:layout_marginRight="16dp"
                         app:cardCornerRadius="15dp"
                         app:layout_rowWeight="1"
-                        app:layout_columnWeight="1" >
+                        app:layout_columnWeight="1"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true">
 
                         <LinearLayout
                             android:layout_margin="16dp"
@@ -225,7 +227,8 @@
                         android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="20dp"
-
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
                         app:cardCornerRadius="15dp"
                         app:layout_rowWeight="1"
                         app:layout_columnWeight="1" >
@@ -305,7 +308,8 @@
                         android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="20dp"
-
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
                         app:cardCornerRadius="15dp"
                         app:layout_rowWeight="1"
                         app:layout_columnWeight="1" >
@@ -345,7 +349,7 @@
                     android:layout_height="38dp"
                     android:layout_gravity="right"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="45dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/ic_logout" />
 
