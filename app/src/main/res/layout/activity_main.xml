@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
+                android:fontFamily="@font/poppins_light"
                 android:text="@string/hi_guest"
                 android:textColor="@color/white"
                 android:textSize="25sp"
@@ -60,6 +61,7 @@
                 android:id="@+id/currentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
                 android:text="Sat 25 April 2020"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +89,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="50dp"
                     android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/poppins_light"
                     android:text="Upcoming Medication"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
@@ -139,6 +142,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="bottom"
+                                    android:fontFamily="@font/poppins_light"
                                     android:text="Inflamyl"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textStyle="bold"/>
@@ -148,6 +152,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/poppins_light"
                                     android:text="2 pills, before meal"
                                     android:textColor="@color/colorPrimaryDark"/>
                             </LinearLayout>
@@ -199,15 +204,15 @@
                             >
 
                             <TextView
-                                android:text="Appointments"
-                                android:gravity="center"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="18sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textStyle="bold"
-                                />
+                                android:fontFamily="@font/poppins_light"
+                                android:gravity="center"
+                                android:text="Appointments"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <ImageView
                                 android:id="@+id/imageView8"
@@ -241,15 +246,15 @@
                             >
 
                             <TextView
-                                android:text="Daily health"
-                                android:gravity="center"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="18sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textStyle="bold"
-                                />
+                                android:fontFamily="@font/poppins_light"
+                                android:gravity="center"
+                                android:text="Daily health"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <ImageView
                                 android:id="@+id/imageView10"
@@ -281,15 +286,15 @@
                             >
 
                             <TextView
-                                android:text="Prescriptions"
-                                android:gravity="center"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="18sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textStyle="bold"
-                                />
+                                android:fontFamily="@font/poppins_light"
+                                android:gravity="center"
+                                android:text="Prescriptions"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <ImageView
                                 android:id="@+id/imageView7"
@@ -322,15 +327,15 @@
                             >
 
                             <TextView
-                                android:text="History"
-                                android:gravity="center"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="18sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textStyle="bold"
-                                />
+                                android:fontFamily="@font/poppins_light"
+                                android:gravity="center"
+                                android:text="History"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <ImageView
                                 android:id="@+id/imageView12"
@@ -344,6 +349,7 @@
                 </androidx.gridlayout.widget.GridLayout>
 
                 <TextView
+                    android:fontFamily="@font/poppins_light"
                     android:id="@+id/logout"
                     android:layout_width="45dp"
                     android:layout_height="38dp"

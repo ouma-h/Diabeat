@@ -76,6 +76,7 @@ public class Programs extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent spIntent = new Intent(Programs.this, ProgramSingle.class);
                             spIntent.putExtra("PROG_ID", program.getId());
+                            spIntent.putExtra("PROG_NAME", program.getCondition());
                             startActivity(spIntent);
                         }
                     });

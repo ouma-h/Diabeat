@@ -32,6 +32,8 @@ public class ProgramSingle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_single);
+        TextView title = (TextView)findViewById(R.id.progTitle);
+        title.setText("Program: "+getIntent().getStringExtra("PROG_NAME"));
         apiHolder = RetrofitClientInstance.getProgramAPI();
         progID = getIntent().getIntExtra("PROG_ID",0);
         displayMedications(progID);
@@ -51,19 +53,19 @@ public class ProgramSingle extends AppCompatActivity {
                     ImageView catIm = (ImageView) v.findViewById(R.id.imCategory);
                     switch (med.getCategory()) {
                         case "Inhaled":{
-                            catIm.setImageResource(R.drawable.inhaling);
+                            catIm.setImageResource(R.drawable.ic_inhealing);
                             break;
                         }
                         case "Pills": {
-                            catIm.setImageResource(R.drawable.pills);
+                            catIm.setImageResource(R.drawable.ic_bottle_pills);
                             break;
                         }
                         case "Lotion": {
-                            catIm.setImageResource(R.drawable.cream);
+                            catIm.setImageResource(R.drawable.ic_cream);
                             break;
                         }
                         case "Syringe": {
-                            catIm.setImageResource(R.drawable.injection);
+                            catIm.setImageResource(R.drawable.ic_injection);
                             break;
                         }
                         default:
@@ -74,7 +76,7 @@ public class ProgramSingle extends AppCompatActivity {
                     textView.setText(med.getName());
 
                     TextView durationView = (TextView) v.findViewById(R.id.textDuration);
-                    durationView.setText(med.getDuration()+" "+med.getDuration_unit());
+                    durationView.setText("For "+med.getDuration()+" day(s).");
 
                     ViewGroup insertPoint = (ViewGroup) findViewById(R.id.linearCards);
                     insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
