@@ -8,7 +8,6 @@ public class User {
     private String last_name;
     private String birthday;
 
-
     private String password;
     private String authToken;
 

@@ -85,6 +85,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 }
 
                 User userResponse = response.body();
+
                 assert userResponse != null;
                 SignUpActivity.setUserInformation(activity_login.this, userResponse);
                 Intent myIntent = new Intent(activity_login.this, MainActivity.class);

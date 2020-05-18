@@ -14,5 +14,6 @@
     <string name="password">Password</string>
     <string name="health_status">Health Status</string>
     <string name="hi_guest">Hi, Guest!</string>
+    <string name="slash">/</string>
 
 </resources>

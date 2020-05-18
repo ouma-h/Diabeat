@@ -8,13 +8,11 @@ public class Update {
     private String birthdate;
     private String password;
 
-    public Update(String email, String first_name, String last_name, String birthdate, String password , String username) {
-        this.username = username;
+    public Update(String email, String first_name, String last_name, String birthdate) {
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
         this.birthdate = birthdate;
-        this.password = password;
     }
 
     public void setUsername(String username) {

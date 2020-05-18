@@ -1,9 +1,12 @@
 package com.example.diabeat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -49,7 +52,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         firstName = findViewById(R.id.firstName);
         birthday = findViewById(R.id.birthdayInput);
         findViewById(R.id.saveProfile).setOnClickListener(this);
-
+        findViewById(R.id.logout).setOnClickListener(this);
         user = MainActivity.getUserInfo(this);
 
         lastName.setText(user.getLast_name());
@@ -76,9 +79,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
 
     public void updateUser(String lastName, String firstName, String birthday){
 
-        Update update = new Update(user.getEmail(), firstName, lastName, birthday, "pbkdf2_sha256$180000$GR4Zgjq9oO2H$wF7A+g9duJp4PNaRZZDNxlttY0vcToBWGg0zk0+nvH4=","test@t.tn");
-        /*System.out.println("!!!!!!!!!!!!!!!!!!!!!!!           :  "+ update.getEmail()+ " "+ update.getBirthdate()+" "+ user.getPassword()
-                + " "+update.getFirst_name() +" "+ update.getLast_name() +" "+ user.getUsername());*/
+        Update update = new Update(user.getEmail(), firstName, lastName, birthday);
 
         Call<User> call = userApi.updateUser(user.getId(),update);
         call.enqueue(new Callback<User>() {
@@ -123,14 +124,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         birthday.setText(date);
     }
 
-    public void loadId() throws IOException {
-        FileInputStream fis = null;
-        fis = openFileInput(FILE_NAME);
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader br = new BufferedReader(isr);
-        String id;
-        id = br.readLine();
-        userId = Integer.parseInt(id);
+    public void logout(@NonNull Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("USER");
+        editor.apply();
+        Intent myIntent = new Intent(getBaseContext(), activity_login.class);
+        startActivity(myIntent);
     }
 
     @Override
@@ -141,6 +141,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
                 break;
             case R.id.birthdayInput:
                 showDatePickerDialog();
+                break;
+            case R.id.logout:
+                logout(this);
                 break;
         }
 

@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         userFirstName = findViewById(R.id.userFirstName);
 
         findViewById(R.id.profile).setOnClickListener(this);
+        findViewById(R.id.dailyHealth_card).setOnClickListener(this);
         user = getUserInfo(this);
         if (!user.getFirst_name().equals("")) {
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
@@ -45,11 +47,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+/*
+        String currentTime = DateFormat.getTimeInstance().format(calendar.getTime());
+*/
         TextView textViewDate = findViewById(R.id.currentDate);
         textViewDate.setText(currentDate);
-        /*initNavigationDrawer();*/
-    }
 
+
+
+    }
     @SuppressLint("SetTextI18n")
     @Override
     public void onResume() {
@@ -74,8 +80,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch(id){
             case R.id.profile:
-                Intent intent = new Intent(this, Profile.class);
-                this.startActivity(intent);
+                Intent intent1 = new Intent(this, Profile.class);
+                this.startActivity(intent1);
+                break;
+            case R.id.dailyHealth_card:
+                Intent intent2 = new Intent(this, HealthStatus.class);
+                this.startActivity(intent2);
                 break;
             default:
                 break;

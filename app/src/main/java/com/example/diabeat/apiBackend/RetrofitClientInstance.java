@@ -1,5 +1,7 @@
 package com.example.diabeat.apiBackend;
 
+import com.example.diabeat.HealthStatus;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -26,5 +28,11 @@ public class RetrofitClientInstance {
         Retrofit mInstance = RetrofitClientInstance.getRetrofitInstance();
         UserApi userApi=  mInstance.create(UserApi.class);
         return userApi;
+    }
+
+    public static HealthStatusApi getHealthStatusApi() {
+        Retrofit mInstance = RetrofitClientInstance.getRetrofitInstance();
+        HealthStatusApi healthStatusApi=  mInstance.create(HealthStatusApi.class);
+        return healthStatusApi;
     }
 }
