@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.profile).setOnClickListener(this);
         findViewById(R.id.dailyHealth_card).setOnClickListener(this);
+        findViewById(R.id.logout).setOnClickListener(this);
         user = getUserInfo(this);
         if (user.getFirst_name().length()>1) {
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");

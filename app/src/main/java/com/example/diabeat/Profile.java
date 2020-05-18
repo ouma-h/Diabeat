@@ -52,7 +52,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         firstName = findViewById(R.id.firstName);
         birthday = findViewById(R.id.birthdayInput);
         findViewById(R.id.saveProfile).setOnClickListener(this);
-        findViewById(R.id.logout).setOnClickListener(this);
         user = MainActivity.getUserInfo(this);
 
         lastName.setText(user.getLast_name());
