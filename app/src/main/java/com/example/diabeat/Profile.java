@@ -124,14 +124,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         birthday.setText(date);
     }
 
-    public void logout(@NonNull Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("USER");
-        editor.apply();
-        Intent myIntent = new Intent(getBaseContext(), activity_login.class);
-        startActivity(myIntent);
-    }
 
     @Override
     public void onClick(View v) {
@@ -142,8 +134,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
             case R.id.birthdayInput:
                 showDatePickerDialog();
                 break;
-            case R.id.logout:
-                logout(this);
+            default:
                 break;
         }
 

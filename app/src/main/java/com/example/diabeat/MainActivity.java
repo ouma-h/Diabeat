@@ -58,9 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.prescriptions_card).setOnClickListener(this);
     }
 
-
-
-    }
     @SuppressLint("SetTextI18n")
     @Override
     public void onResume() {
@@ -80,6 +77,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return user;
     }
 
+    public void logout(@NonNull Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("USER");
+        editor.apply();
+        Intent myIntent = new Intent(getBaseContext(), activity_login.class);
+        startActivity(myIntent);
+    }
+
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -95,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.prescriptions_card:
                 Intent ipcard = new Intent(this, Programs.class);
                 this.startActivity(ipcard);
+                break;
+            case R.id.logout:
+                logout(this);
                 break;
             default:
                 break;
