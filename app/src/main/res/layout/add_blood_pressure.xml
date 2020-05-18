@@ -20,7 +20,7 @@
             android:layout_width="52dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_health_care" />
+            android:background="@drawable/ic_blood_pressure_gauge" />
         <TextView
             android:id="@+id/textView4"
             android:layout_width="228dp"

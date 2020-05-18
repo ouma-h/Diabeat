@@ -21,7 +21,7 @@
             android:layout_width="52dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_computer" />
+            android:background="@drawable/ic_thermometer" />
 
         <TextView
             android:id="@+id/textView4"
