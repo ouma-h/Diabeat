@@ -34,7 +34,7 @@ public class Programs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programs);
         apiHolder = RetrofitClientInstance.getProgramAPI();
-        userID = 27;
+        userID = MainActivity.getUserInfo(this).getId();;
         displayPrograms();
         btnNew = (Button)findViewById(R.id.newProg);
         btnNew.setOnClickListener(new View.OnClickListener() {
