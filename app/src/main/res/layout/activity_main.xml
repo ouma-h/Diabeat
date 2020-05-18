@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/hi_guest"
                 android:textColor="@color/white"
                 android:textSize="25sp"
@@ -88,13 +88,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="50dp"
+                    android:layout_marginRight="50dp"
                     android:layout_marginBottom="6dp"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Upcoming Medication"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginRight="50dp" />
+                    android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_marginTop="15dp"
