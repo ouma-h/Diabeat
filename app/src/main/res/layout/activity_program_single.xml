@@ -8,10 +8,11 @@
 
     <LinearLayout
         android:id="@+id/linearPL"
-        android:layout_width="0dp"
-        android:layout_height="601dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,27 +21,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Medications:"
+            android:text="Prescription medications:"
             android:textSize="22dp" />
 
-        <LinearLayout
-            android:id="@+id/linearCards"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="10dp"></LinearLayout>
+            android:layout_height="match_parent"
+            android:paddingBottom="35dp">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/round_button"
-            android:onClick="newMed"
-            android:text="+ New Medication"
-            android:textColor="@color/textButtonColor" />
+            <LinearLayout
+                android:id="@+id/linearCards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"></LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/round_button"
+        android:onClick="newMed"
+        android:text="+ New Medication"
+        android:textColor="@color/textButtonColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

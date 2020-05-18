@@ -216,12 +216,11 @@
                                 />
 
                             <ImageView
-                                android:src="@drawable/plus_icon"
-                                android:scaleType="center"
-                                android:layout_gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                                android:id="@+id/imageView8"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/ic_male_nurse" />
 
                         </LinearLayout>
 
@@ -258,12 +257,11 @@
                                 />
 
                             <ImageView
-                                android:src="@drawable/plus_icon"
-                                android:scaleType="center"
-                                android:layout_gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                                android:id="@+id/imageView10"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/ic_thermal" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -274,7 +272,8 @@
                         android:layout_marginBottom="16dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="16dp"
-
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
                         app:cardCornerRadius="15dp"
                         app:layout_rowWeight="1"
                         app:layout_columnWeight="1" >
@@ -298,12 +297,12 @@
                                 />
 
                             <ImageView
-                                android:src="@drawable/plus_icon"
-                                android:scaleType="center"
-                                android:layout_gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                                android:id="@+id/imageView7"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/ic_medical_prescription" />
+
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -338,12 +337,11 @@
                                 />
 
                             <ImageView
-                                android:src="@drawable/plus_icon"
-                                android:scaleType="center"
-                                android:layout_gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                                android:id="@+id/imageView12"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                app:srcCompat="@drawable/ic_medical_records" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>

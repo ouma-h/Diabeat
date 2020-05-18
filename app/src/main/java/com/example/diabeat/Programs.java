@@ -1,6 +1,7 @@
 package com.example.diabeat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,13 +28,23 @@ import com.example.diabeat.models.User;
 public class Programs extends AppCompatActivity {
     ProgramAPI apiHolder;
     int userID;
+    private Button btnNew;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programs);
         apiHolder = RetrofitClientInstance.getProgramAPI();
-        userID = MainActivity.getUserInfo(this).getId();
+        userID = 27;
         displayPrograms();
+        btnNew = (Button)findViewById(R.id.newProg);
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent npIntent = new Intent(Programs.this, AddProgram.class);
+                startActivity(npIntent);
+            }
+        });
+
     }
     public void displayPrograms(){
 
@@ -59,8 +70,8 @@ public class Programs extends AppCompatActivity {
                     durationView.setText(program.getDuration()+" weeks");
 
                     // Button event listener
-                    Button btnView = (Button)v.findViewById(R.id.viewBtn);
-                    btnView.setOnClickListener(new View.OnClickListener() {
+                    CardView card = (CardView) v.findViewById(R.id.wrapper);
+                    card.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent spIntent = new Intent(Programs.this, ProgramSingle.class);

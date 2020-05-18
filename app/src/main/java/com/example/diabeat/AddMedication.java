@@ -3,6 +3,8 @@ package com.example.diabeat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.diabeat.apiBackend.ProgramAPI;
@@ -29,7 +32,12 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
     private ImageButton btnCat4;
     private Button btnBefore;
     private Button btnAfter;
-
+    // TIME SELECTOR
+    private int mHour;
+    private int mMinute;
+    private Context ctx = this;
+    // PROG ID
+    private Integer progID;
     // FORM VARIABLES
     private String name = "MedName";
     private Integer amount = 1;
@@ -37,14 +45,39 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
     private Integer duration = 1;
     private String duration_unit = "week";
     private Boolean isBefore = true;
+    private String morning = "00:00";
+    private String midday = "00:00";
+    private String night = "00:00";
+    private Boolean isMon = false;
+    private Boolean isTue = false;
+    private Boolean isWed = false;
+    private Boolean isThu = false;
+    private Boolean isFri = false;
+    private Boolean isSat = false;
+    private Boolean isSun = false;
     private Integer prog_id;
+    // BTN
+    private Button btnSubmit;
+    private Button freqMorning;
+    private Button freqMidDay;
+    private Button freqNight;
+    private Button freqBtn;
+    // BTN DAYS
+    private Button btnMon;
+    private Button btnTue;
+    private Button btnWed;
+    private Button btnThur;
+    private Button btnFri;
+    private Button btnSat;
+    private Button btnSun;
+    private Button btnHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medication);
         apiHolder = RetrofitClientInstance.getProgramAPI();
-
+        progID = getIntent().getIntExtra("PROG_ID",0);
         // CATEGORY BUTTON
         btnCat1 = findViewById(R.id.btnCat1);
         btnCat1.setOnClickListener(this);
@@ -62,10 +95,34 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
         btnAfter.setOnClickListener(this);
 
         // SUBMIT BUTTON
-        Button btnSubmit = findViewById(R.id.addMedBtn);
+        btnSubmit = findViewById(R.id.addMedBtn);
         btnSubmit.setOnClickListener(this);
+        // FREQUENCY BTNS
+        freqMorning = (Button)findViewById(R.id.freqMorning);
+        freqMorning.setOnClickListener(this);
+        freqMidDay = (Button)findViewById(R.id.freqMidDAy);
+        freqMidDay.setOnClickListener(this);
+        freqNight = (Button)findViewById(R.id.freqNight);
+        freqNight.setOnClickListener(this);
+
+        // BTN DAYS
+        btnMon = (Button)findViewById(R.id.btnMon);
+        btnMon.setOnClickListener(this);
+        btnTue = (Button)findViewById(R.id.btnTue);
+        btnTue.setOnClickListener(this);
+        btnWed = (Button)findViewById(R.id.btnWed);
+        btnWed.setOnClickListener(this);
+        btnThur = (Button)findViewById(R.id.btnThu);
+        btnThur.setOnClickListener(this);
+        btnFri = (Button)findViewById(R.id.btnFri);
+        btnFri.setOnClickListener(this);
+        btnSat = (Button)findViewById(R.id.btnSat);
+        btnSat.setOnClickListener(this);
+        btnSun = (Button)findViewById(R.id.btnSUn);
+        btnSun.setOnClickListener(this);
     }
     public void submitMed(){
+        btnSubmit.setEnabled(false);
         EditText medName = (EditText)findViewById(R.id.medName);
         name = medName.getText().toString();
         EditText medAmount = (EditText)findViewById(R.id.medAmount);
@@ -73,17 +130,28 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
         EditText medDuration = (EditText)findViewById(R.id.medDuration);
         duration = Integer.parseInt(medDuration.getText().toString());
 
-        Medication med = new Medication(name,amount,category,duration,"week",isBefore,1);
+        if(freqMorning.getText().toString().length()>1) {
+            morning = freqMorning.getText().toString();
+        }
+        if(freqMidDay.getText().toString().length()>1) {
+            midday = freqMidDay.getText().toString();
+        }
+        if(freqNight.getText().toString().length()>1) {
+            night = freqNight.getText().toString();
+        }
+
+        Medication med = new Medication(name,amount,category,duration,"week", isMon, isTue, isWed, isThu, isFri, isSat, isSun, morning, midday, night,isBefore, progID);
         Call<Medication> call = apiHolder.createMedication(med);
         call.enqueue(new Callback<Medication>() {
             @Override
             public void onResponse(Call<Medication> call, Response<Medication> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Code :"+response.code(),Toast.LENGTH_LONG).show();
+                    btnSubmit.setEnabled(true);
                     return;
                 }
                 Intent spIntent = new Intent(AddMedication.this, ProgramSingle.class);
-                spIntent.putExtra("PROG_ID", 1);
+                spIntent.putExtra("PROG_ID", progID);
                 startActivity(spIntent);
             }
 
@@ -105,6 +173,66 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
     private void unselectBeforeAfter(){
         btnBefore.setBackgroundResource(R.drawable.round_button_white);
         btnAfter.setBackgroundResource(R.drawable.round_button_white);
+    }
+    private void show_Timepicker() {
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(ctx,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int pHour,
+                                          int pMinute) {
+
+                        mHour = pHour;
+                        mMinute = pMinute;
+                        freqBtn.setBackgroundResource(R.drawable.round_button);
+                        freqBtn.setText(String.format("%02d" , mHour)+":"+String.format("%02d" , mMinute));
+
+                    }
+                }, mHour, mMinute, true);
+
+        timePickerDialog.show();
+    }
+    private void selectFrequency(View v){
+        freqBtn = (Button)v;
+        if(freqBtn.getText().toString().length()>0) {
+            freqBtn.setBackgroundResource(R.drawable.round_button_white);
+            freqBtn.setText("");
+        } else {
+            show_Timepicker();
+        }
+    }
+    private void toggleDay(View v){
+        btnHolder = (Button)v;
+        if(v.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.round_button_white).getConstantState())) {
+            v.setBackgroundResource(R.drawable.round_button);
+        } else {
+            v.setBackgroundResource(R.drawable.round_button_white);
+        }
+
+        switch (btnHolder.getText().toString()){
+            case "Sun":
+                isSun = !isSun;
+                break;
+            case "Mon":
+                isMon = !isMon;
+                break;
+            case "Tue":
+                isTue = !isTue;
+                break;
+            case "Wed":
+                isWed = !isWed;
+                break;
+            case "Thu":
+                isThu = !isThu;
+                break;
+            case "Fri":
+                isFri = !isFri;
+                break;
+            case "Sat":
+                isSat = !isSat;
+                break;
+        }
     }
     @Override
     public void onClick(View v) {
@@ -160,6 +288,26 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
                 isBefore = false;
                 break;
             }
+            // DAYS
+            case R.id.btnSUn:
+            case R.id.btnMon:
+            case R.id.btnTue:
+            case R.id.btnWed:
+            case R.id.btnThu:
+            case R.id.btnFri:
+            case R.id.btnSat:
+                toggleDay(v);
+                break;
+            // FREQUENCY
+            case R.id.freqMorning:
+                selectFrequency(v);
+                break;
+            case R.id.freqMidDAy:
+                selectFrequency(v);
+                break;
+            case R.id.freqNight:
+                selectFrequency(v);
+                break;
         }
     }
 }

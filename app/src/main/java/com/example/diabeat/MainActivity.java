@@ -3,6 +3,7 @@ package com.example.diabeat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.profile).setOnClickListener(this);
         user = getUserInfo(this);
-        if (!user.getFirst_name().equals("")) {
+        if (user.getFirst_name().length()>1) {
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
 
         }
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textViewDate = findViewById(R.id.currentDate);
         textViewDate.setText(currentDate);
         /*initNavigationDrawer();*/
+        CardView prescriptions = findViewById(R.id.prescriptions_card);
+        prescriptions.setOnClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -76,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.profile:
                 Intent intent = new Intent(this, Profile.class);
                 this.startActivity(intent);
+                break;
+            case R.id.prescriptions_card:
+                Intent ipcard = new Intent(this, Programs.class);
+                this.startActivity(ipcard);
                 break;
             default:
                 break;
