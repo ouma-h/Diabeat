@@ -24,7 +24,7 @@ public class BloodPressure {
         return systolic;
     }
 
-    String getBloodPressure_date() {
+    public String getBloodPressure_date() {
         return bloodPressure_date;
     }
 
@@ -39,4 +39,5 @@ public class BloodPressure {
     public void setBloodPressure_date(String bloodPressure_date) {
         this.bloodPressure_date = bloodPressure_date;
     }
+
 }

@@ -24,4 +24,6 @@ public interface HealthStatusApi {
 
     @GET("bloodpressure/")
     Call<List<BloodPressure>> getBloodPressures(@Query("user_id") int user_id);
+
+
 }

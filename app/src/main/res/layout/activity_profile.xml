@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/edit_profile"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -49,6 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/last_name"
+            android:layout_marginRight="55dp"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -68,6 +71,8 @@
             android:layout_height="wrap_content"
             android:text="@string/first_name"
             android:textSize="20sp"
+            android:layout_marginRight="55dp"
+            android:fontFamily="@font/poppins_semibold"
             android:textStyle="bold" />
 
         <EditText
@@ -84,6 +89,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/birthday"
+            android:layout_marginRight="65dp"
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="20sp"
             android:textStyle="bold" />
 

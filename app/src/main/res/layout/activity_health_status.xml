@@ -10,41 +10,37 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="15dp"
-            android:weightSum="10">
+            android:paddingTop="15dp">
 
             <ImageView
                 android:id="@+id/back_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="20dp"
-                app:srcCompat="@drawable/arrow_back"/>
+                app:srcCompat="@drawable/arrow_back" />
 
             <TextView
                 android:id="@+id/healthStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/health_status"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="30sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <!--Temperature display-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="153dp"
-                android:layout_weight="8"
                 android:orientation="horizontal"
                 android:weightSum="4">
 
@@ -53,31 +49,33 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:orientation="vertical"
+                    android:paddingLeft="10dp"
                     android:weightSum="2"
-                    tools:ignore="NestedWeights"
-                    android:paddingLeft="10dp">
+                    tools:ignore="NestedWeights">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="bottom">
+                        android:gravity="bottom"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Temperature"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="25sp"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Measure in Celsius degrees"
                             android:textColor="#000"
-                            android:text="Measure in Celsius degrees" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -89,31 +87,34 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
+
                             <TextView
                                 android:id="@+id/temp_measure"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textSize="30sp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:text="--.-"
                                 android:textColor="@color/ButtonColor"
-                                android:text="37.5" />
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textSize="30sp"
+                                android:text="°C"
                                 android:textColor="@color/ButtonColor"
-                                android:text="°C" />
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
-
 
 
                         <TextView
                             android:id="@+id/temp_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#000"
-                            android:text="Firday 25 Avril 2019, 18:06" />
+                            android:fontFamily="@font/poppins_light"
+                            android:text=""
+                            android:textColor="#000" />
                     </LinearLayout>
 
 
@@ -126,24 +127,36 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/add_circle"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:srcCompat="@drawable/add_circle" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="390dp"
-                android:layout_gravity="center"
+                android:layout_width="300dp"
                 android:layout_height="3dp"
-                android:background="@color/white"/>
+                android:layout_gravity="center"
+                android:background="@color/white" />
+
+            <!--Temperature chart-->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart_temp"
+                android:layout_width="match_parent"
+                android:layout_height="270dp" />
+
+            <View
+                android:layout_width="300dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/white" />
 
             <!--Blood pressure display-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="153dp"
-                android:layout_weight="8"
                 android:orientation="horizontal"
                 android:weightSum="4">
 
@@ -152,31 +165,33 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:orientation="vertical"
+                    android:paddingLeft="10dp"
                     android:weightSum="2"
-                    tools:ignore="NestedWeights"
-                    android:paddingLeft="10dp">
+                    tools:ignore="NestedWeights">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="bottom">
+                        android:gravity="bottom"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Blood Pressure"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="25sp"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Measure in mmHg"
                             android:textColor="#000"
-                            android:text="Measure in mmHg" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -188,39 +203,45 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
-                            <TextView
-                            android:id="@+id/diastolic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="30sp"
-                            android:textColor="@color/ButtonColor"
-                            android:text="129" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textSize="30sp"
-                                android:textColor="@color/ButtonColor"
-                                android:text="/" />
+
                             <TextView
                                 android:id="@+id/systolic"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textSize="30sp"
-                                android:textColor="@color/ButtonColor"
-                                android:text="84" />
-                        </LinearLayout>
+                                android:fontFamily="@font/poppins_semibold"
+                                android:text="---"
 
+                                android:textColor="@color/ButtonColor"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="/"
+                                android:textColor="@color/ButtonColor"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/diastolic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="---"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textColor="@color/ButtonColor"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
 
                         <TextView
                             android:id="@+id/bp_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#000"
-                            android:text="Firday 25 Avril 2019, 18:06" />
+                            android:fontFamily="@font/poppins_light"
+                            android:text="Firday 25 Avril 2019, 18:06"
+                            android:textColor="#000" />
                     </LinearLayout>
 
 
@@ -233,27 +254,29 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/add_circle"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:srcCompat="@drawable/add_circle" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="390dp"
+                android:layout_width="300dp"
+                android:layout_height="2dp"
                 android:layout_gravity="center"
-                android:layout_height="3dp"
                 android:background="@color/white" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/blood_pressure_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <!--Temperature chart-->
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/line_chart_temp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-
+                    </LinearLayout>
+                </ScrollView>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
