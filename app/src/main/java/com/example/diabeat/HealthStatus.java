@@ -409,6 +409,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
         private String[] mValues;
 
         public MyXAxisValueFormatter(String[] values) {
+
             this.mValues = values;
         }
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.diabeat.apiBackend.HealthStatusApi;
 import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.apiBackend.UserApi;
 import retrofit2.Call;

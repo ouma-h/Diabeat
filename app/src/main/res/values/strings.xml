@@ -15,5 +15,7 @@
     <string name="health_status">Health Status</string>
     <string name="hi_guest">Hi, Guest!</string>
     <string name="slash">/</string>
+    <string name="appointments">Appointments</string>
+    <string name="upcoming_appointments">Upcoming Appointments</string>
 
 </resources>

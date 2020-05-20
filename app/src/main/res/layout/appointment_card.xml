@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Dr. Mounir ben Mounir"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/doctor_specialty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Medicine Specialty"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/doctor_name" />
+
+        <TextView
+            android:id="@+id/imageView8"
+            android:layout_width="29dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:backgroundTint=""
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_appointment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/doctor_specialty" />
+
+        <TextView
+            android:id="@+id/date_appointment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="96dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Friday, 18 May, 2020"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnCall"
+            android:layout_width="40dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="104dp"
+            android:layout_marginRight="104dp"
+            android:background="@drawable/round_button"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:tint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_telephone" />
+
+        <ImageButton
+            android:id="@+id/btnSMS"
+            android:layout_width="40dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="104dp"
+            android:layout_marginRight="104dp"
+            android:background="@drawable/round_button"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:tint="#FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCall"
+            app:srcCompat="@drawable/ic_email" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
