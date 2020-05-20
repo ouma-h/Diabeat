@@ -46,27 +46,6 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btnCall"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/round_button"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                android:tint="#FFFFFF"
-                app:srcCompat="@drawable/ic_telephone" />
-
-            <ImageButton
-                android:id="@+id/btnSMS"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/round_button"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                android:tint="#FFF"
-                app:srcCompat="@drawable/ic_email" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -95,7 +74,7 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/addMedBtn"
+        android:id="@+id/addApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

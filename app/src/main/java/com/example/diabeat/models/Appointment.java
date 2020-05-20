@@ -18,6 +18,12 @@ public class Appointment {
     @Expose
     private Integer doc;
 
+    public Appointment(String appDate, Integer user, Integer doc) {
+        this.appDate = appDate;
+        this.user = user;
+        this.doc = doc;
+    }
+
     public Integer getId() {
         return id;
     }
