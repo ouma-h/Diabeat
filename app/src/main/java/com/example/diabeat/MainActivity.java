@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         findViewById(R.id.prescriptions_card).setOnClickListener(this);
+        findViewById(R.id.appointment_card).setOnClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -106,6 +107,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.logout:
                 logout(this);
+                break;
+            case R.id.appointment_card:
+                Intent appCard = new Intent(this, Appointments.class);
+                startActivity(appCard);
                 break;
             default:
                 break;
