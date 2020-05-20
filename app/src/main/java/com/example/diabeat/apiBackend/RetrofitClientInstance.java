@@ -35,4 +35,14 @@ public class RetrofitClientInstance {
         HealthStatusApi healthStatusApi=  mInstance.create(HealthStatusApi.class);
         return healthStatusApi;
     }
+    public static DoctorAPI getDoctorApi() {
+        Retrofit mInstance = RetrofitClientInstance.getRetrofitInstance();
+        DoctorAPI doctorAPIholer = mInstance.create(DoctorAPI.class);
+        return doctorAPIholer;
+    }
+    public static AppointmentAPI getAppointmentApi() {
+        Retrofit mInstance = RetrofitClientInstance.getRetrofitInstance();
+        AppointmentAPI appointmentAPIholder = mInstance.create(AppointmentAPI.class);
+        return appointmentAPIholder;
+    }
 }

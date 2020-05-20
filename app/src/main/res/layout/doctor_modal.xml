@@ -28,7 +28,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/doctorName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
@@ -37,7 +37,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/doctorSpe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_light"
@@ -88,7 +88,7 @@
         android:textColor="@color/colorPrimary" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/doctorAbout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_light"
@@ -104,7 +104,7 @@
         android:textColor="@color/colorPrimary" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/doctorOpening"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
