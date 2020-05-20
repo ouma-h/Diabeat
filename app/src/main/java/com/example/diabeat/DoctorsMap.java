@@ -244,6 +244,8 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
                     return;
                 }
                 Toast.makeText(getApplicationContext(), "Your appointement has been added", Toast.LENGTH_LONG).show();
+                Intent spIntent = new Intent(DoctorsMap.this, Appointments.class);
+                startActivity(spIntent);
             }
 
             @Override

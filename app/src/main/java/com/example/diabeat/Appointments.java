@@ -41,7 +41,13 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
 
         appointmentsViewPager = findViewById(R.id.appointmentsViewPager);
 
-
+        findViewById(R.id.viewMap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent spIntent = new Intent(Appointments.this, DoctorsMap.class);
+                startActivity(spIntent);
+            }
+        });
 
     }
 
