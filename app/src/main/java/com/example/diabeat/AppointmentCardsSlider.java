@@ -70,10 +70,6 @@ public class AppointmentCardsSlider extends RecyclerView.Adapter<AppointmentCard
         return appointmentList.size();
     }
 
-    public static void getDoctor(Integer doc){
-
-    }
-
     static class AppointmentCardsViewHolder extends RecyclerView.ViewHolder{
 
         private TextView doctorName, specialty, dateAppointment;
