@@ -69,11 +69,11 @@
 
         <ImageButton
             android:id="@+id/btnCall"
-            android:layout_width="44dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/round_button"
             android:padding="10dp"
             android:scaleType="fitCenter"
@@ -84,11 +84,11 @@
 
         <ImageButton
             android:id="@+id/btnSMS"
-            android:layout_width="44dp"
-            android:layout_height="42dp"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/round_button"
             android:padding="10dp"
             android:scaleType="fitCenter"

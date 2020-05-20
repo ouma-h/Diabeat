@@ -1,6 +1,10 @@
 package com.example.diabeat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
@@ -40,6 +44,24 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
         getAppointments(user.getId());
 
         appointmentsViewPager = findViewById(R.id.appointmentsViewPager);
+
+        appointmentsViewPager.setClipToPadding(false);
+        appointmentsViewPager.setClipChildren(false);
+        appointmentsViewPager.setOffscreenPageLimit(3);
+        appointmentsViewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(20));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.95f + r* 0.05f);
+            }
+        });
+
+        appointmentsViewPager.setPageTransformer(compositePageTransformer);
+
 
         findViewById(R.id.viewMap).setOnClickListener(new View.OnClickListener() {
             @Override
