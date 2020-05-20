@@ -104,14 +104,14 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
                         PackageManager.PERMISSION_GRANTED) {
             googleMap.setMyLocationEnabled(true);
             googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-            showDoctors();
+
         } else {
             ActivityCompat.requestPermissions(this, new String[]{
                             Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION},
                     TAG_CODE_PERMISSION_LOCATION);
         }
-
+        showDoctors();
 
     }
 
