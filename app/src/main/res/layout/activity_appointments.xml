@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@color/colorPrimary"
-                android:gravity="bottom"
+                android:layout_gravity="center"
                 android:text="@string/upcoming_appointments"
                 android:textSize="22sp" />
         </LinearLayout>

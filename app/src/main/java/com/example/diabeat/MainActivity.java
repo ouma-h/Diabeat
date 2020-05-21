@@ -4,20 +4,28 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.diabeat.models.User;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
@@ -26,7 +34,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    private static final int REQUEST_PHONE_CALL = 0;
     private TextView userFirstName;
     User user;
 
@@ -41,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.profile).setOnClickListener(this);
         findViewById(R.id.dailyHealth_card).setOnClickListener(this);
         findViewById(R.id.logout).setOnClickListener(this);
+        findViewById(R.id.emergency).setOnClickListener(this);
+        findViewById(R.id.btnCallSAMU).setOnClickListener(this);
+        findViewById(R.id.btnCallPolice).setOnClickListener(this);
+        findViewById(R.id.btnCallAmb).setOnClickListener(this);
         user = getUserInfo(this);
         if (user.getFirst_name().length()>1) {
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
@@ -88,6 +100,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(myIntent);
     }
 
+    public void openEmergencyDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                MainActivity.this, R.style.BottomSheetDialogTheme
+        );
+        final View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.emergency,
+                (LinearLayout) findViewById(R.id.emergency_bottom_sheet));
+        ImageButton btnCallAmb = bottomSheetView.findViewById(R.id.btnCallAmb);
+        ImageButton btnCallPolice = bottomSheetView.findViewById(R.id.btnCallPolice);
+        ImageButton btnCallSAMU = bottomSheetView.findViewById(R.id.btnCallSAMU);
+
+        btnCallAmb.setImageResource(R.drawable.ic_telephone);
+        btnCallPolice.setImageResource(R.drawable.ic_telephone);
+        btnCallSAMU.setImageResource(R.drawable.ic_telephone);
+
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+
+    }
+
+    private void makeCall(String phoneNum) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+        } else {
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:"+phoneNum));
+            startActivity(callIntent);
+        }
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -111,6 +154,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.appointment_card:
                 Intent appCard = new Intent(this, Appointments.class);
                 startActivity(appCard);
+                break;
+            case R.id.emergency:
+                openEmergencyDialog();
+                break;
+            case R.id.btnCallAmb:
+                makeCall("71725555");
+                break;
+            case R.id.btnCallPolice:
+                makeCall("197");
+                break;
+            case R.id.btnCallSAMU:
+                makeCall("190");
                 break;
             default:
                 break;
