@@ -50,9 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.dailyHealth_card).setOnClickListener(this);
         findViewById(R.id.logout).setOnClickListener(this);
         findViewById(R.id.emergency).setOnClickListener(this);
-        findViewById(R.id.btnCallSAMU).setOnClickListener(this);
-        findViewById(R.id.btnCallPolice).setOnClickListener(this);
-        findViewById(R.id.btnCallAmb).setOnClickListener(this);
+
         user = getUserInfo(this);
         if (user.getFirst_name().length()>1) {
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
@@ -116,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCallSAMU.setImageResource(R.drawable.ic_telephone);
 
         bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetView.findViewById(R.id.btnCallSAMU).setOnClickListener(this);
+        bottomSheetView.findViewById(R.id.btnCallPolice).setOnClickListener(this);
+        bottomSheetView.findViewById(R.id.btnCallAmb).setOnClickListener(this);
         bottomSheetDialog.show();
 
     }
