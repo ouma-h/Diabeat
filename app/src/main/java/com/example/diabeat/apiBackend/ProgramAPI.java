@@ -22,8 +22,8 @@ public interface ProgramAPI {
     @GET("medications/")
     Call<List<Medication>> getProgramMeds(@Query("prog_id") int prog_id);
 
-    @GET("latestmedications/")
-    Call<List<Medication>> getSortedProgramMeds(@Query("prog_id") int prog_id);
+    @GET("medications/")
+    Call<List<Medication>> getMedsPerUser(@Query("user_id") int user_id);
 
     @Headers("Content-Type: application/json; charset=UTF-8")
     @POST("medications/")

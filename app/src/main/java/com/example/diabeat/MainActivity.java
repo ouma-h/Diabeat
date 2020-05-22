@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import com.example.diabeat.apiBackend.ProgramAPI;
 import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.models.ModelProgram;
+import com.example.diabeat.models.Doctor;
 import com.example.diabeat.models.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
@@ -101,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textViewDate = findViewById(R.id.currentDate);
         textViewDate.setText(currentDate);
 
-
+        findViewById(R.id.prescriptions_card).setOnClickListener(this);
+        findViewById(R.id.appointment_card).setOnClickListener(this);
     }
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -163,6 +167,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(callIntent);
         }
 
+    }
+    public void openConfirmDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                MainActivity.this, R.style.BottomSheetDialogTheme
+        );
+        final View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.confirm_skip,
+                (LinearLayout) findViewById(R.id.dialog));
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 
     public void displayPrograms(Integer user_id){

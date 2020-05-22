@@ -28,12 +28,14 @@ import retrofit2.Response;
 public class ProgramSingle extends AppCompatActivity {
     ProgramAPI apiHolder;
     private Integer progID;
+    private String prog_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_single);
         TextView title = (TextView)findViewById(R.id.progTitle);
-        title.setText("Program: "+getIntent().getStringExtra("PROG_NAME"));
+        prog_name = getIntent().getStringExtra("PROG_NAME");
+        title.setText("Program: "+prog_name);
         apiHolder = RetrofitClientInstance.getProgramAPI();
         progID = getIntent().getIntExtra("PROG_ID",0);
         displayMedications(progID);
@@ -92,6 +94,7 @@ public class ProgramSingle extends AppCompatActivity {
     public void newMed(View v){
         Intent addmedIntent = new Intent(ProgramSingle.this, AddMedication.class);
         addmedIntent.putExtra("PROG_ID", progID);
+        addmedIntent.putExtra("PROG_NAME", prog_name);
         startActivity(addmedIntent);
     }
 }

@@ -3,9 +3,12 @@ package com.example.diabeat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +23,13 @@ import com.example.diabeat.apiBackend.ProgramAPI;
 import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.models.Medication;
 
+import java.util.Calendar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.util.Calendar.HOUR;
 
 public class AddMedication extends AppCompatActivity implements View.OnClickListener {
     ProgramAPI apiHolder;
@@ -140,7 +147,7 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
             night = freqNight.getText().toString();
         }
 
-        Medication med = new Medication(name,amount,category,duration,"week", isMon, isTue, isWed, isThu, isFri, isSat, isSun, morning, midday, night,isBefore, progID);
+        Medication med = new Medication(name,amount,category,duration,"week", isMon, isTue, isWed, isThu, isFri, isSat, isSun, morning, midday, night,isBefore, progID, MainActivity.getUserInfo(this).getId());
         Call<Medication> call = apiHolder.createMedication(med);
         call.enqueue(new Callback<Medication>() {
             @Override
@@ -150,6 +157,8 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
                     btnSubmit.setEnabled(true);
                     return;
                 }
+                Calendar c = Calendar.getInstance();
+                setRedminder(response.body());
                 Intent spIntent = new Intent(AddMedication.this, ProgramSingle.class);
                 spIntent.putExtra("PROG_ID", progID);
                 startActivity(spIntent);
@@ -233,6 +242,26 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
                 isSat = !isSat;
                 break;
         }
+    }
+    private void setRedminder(Medication med){
+        Calendar daterem = Calendar.getInstance();
+        daterem.set(Calendar.HOUR_OF_DAY, mHour);
+        daterem.set(Calendar.MINUTE, mMinute);
+        daterem.set(Calendar.SECOND, 0);
+        long timenow = System.currentTimeMillis();
+        long padding = 1000*5;
+        AlarmManager medReminder = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        intent.putExtra("Title", "Diabete: "+getIntent().getStringExtra("PROG_NAME"));
+        intent.putExtra("Content", "It's time to take your "+daterem.getTime().toString()+" "+med.getName()+". You need "+med.getAmount()+" unit(s).");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+
+
+        //medReminder.setExact(AlarmManager.RTC_WAKEUP, daterem.getTimeInMillis(), pendingIntent);
+        medReminder.setExact(AlarmManager.RTC_WAKEUP, timenow+padding, pendingIntent);
+
+        Log.i("REMINDER","Reminder created");
     }
     @Override
     public void onClick(View v) {
