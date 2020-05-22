@@ -71,6 +71,15 @@ public class AddProgram extends AppCompatActivity {
                 submitProgram();
             }
         });
+
+        findViewById(R.id.back_arrow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent npIntent = new Intent(AddProgram.this, Programs.class);
+                startActivity(npIntent);
+                finish();
+            }
+        });
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void show_Datepicker() {

@@ -44,6 +44,14 @@ public class Programs extends AppCompatActivity {
                 startActivity(npIntent);
             }
         });
+        findViewById(R.id.back_arrow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent npIntent = new Intent(Programs.this, MainActivity.class);
+                startActivity(npIntent);
+                finish();
+            }
+        });
 
     }
     public void displayPrograms(){

@@ -54,6 +54,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_semibold"
                             android:text="Program 01"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="18sp" />
 
                         <TextView
@@ -62,6 +63,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_light"
                             android:text="6 weeks"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="14sp" />
 
                     </LinearLayout>

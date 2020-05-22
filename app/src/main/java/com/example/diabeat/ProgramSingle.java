@@ -37,6 +37,14 @@ public class ProgramSingle extends AppCompatActivity {
         apiHolder = RetrofitClientInstance.getProgramAPI();
         progID = getIntent().getIntExtra("PROG_ID",0);
         displayMedications(progID);
+        findViewById(R.id.back_arrow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent npIntent = new Intent(ProgramSingle.this, Programs.class);
+                startActivity(npIntent);
+                finish();
+            }
+        });
     }
     public void displayMedications(Integer progID){
         Call<List<Medication>> call = apiHolder.getProgramMeds(progID);
