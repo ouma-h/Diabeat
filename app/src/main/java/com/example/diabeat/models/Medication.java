@@ -22,12 +22,13 @@ public class Medication {
     private String night;
     private Boolean isBefore;
     private Integer prog_id;
+    private Integer user_id;
 
     Medication() {
 
     }
 
-    public Medication(String name, Integer amount, String category, Integer duration, String duration_unit, Boolean isMon, Boolean isTue, Boolean isWed, Boolean isThu, Boolean isFri, Boolean isSat, Boolean isSun, String morning, String midday, String night, Boolean isBefore, Integer prog_id) {
+    public Medication(String name, Integer amount, String category, Integer duration, String duration_unit, Boolean isMon, Boolean isTue, Boolean isWed, Boolean isThu, Boolean isFri, Boolean isSat, Boolean isSun, String morning, String midday, String night, Boolean isBefore, Integer prog_id, Integer user_id) {
         this.name = name;
         this.amount = amount;
         this.category = category;
@@ -45,6 +46,7 @@ public class Medication {
         this.night = night;
         this.isBefore = isBefore;
         this.prog_id = prog_id;
+        this.user_id = user_id;
     }
 
     public String getName() {
@@ -113,5 +115,8 @@ public class Medication {
 
     public Integer getProg_id() {
         return prog_id;
+    }
+    public Integer getUser_id() {
+        return user_id;
     }
 }
