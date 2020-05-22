@@ -40,7 +40,6 @@ public class AppointmentCardsSlider extends RecyclerView.Adapter<AppointmentCard
 
     public AppointmentCardsSlider(List<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
-        /*System.out.println(this.appointmentList);*/
     }
 
     @NonNull

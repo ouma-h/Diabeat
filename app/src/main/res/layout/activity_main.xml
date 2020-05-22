@@ -110,85 +110,26 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_width="300dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="20dp"
-                    android:background="@drawable/reminder_card">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/medicationsViewPager"
+                    android:layout_width="370dp"
+                    android:layout_height="125dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="25dp"
+                    android:clipToPadding="false"
+                    android:foregroundGravity="center"
+                    android:overScrollMode="never"
+                    android:paddingStart="40dp"
+                    android:paddingLeft="40dp"
+                    android:paddingEnd="40dp"
+                    android:paddingRight="40dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:weightSum="12">
-
-
-                        <ImageView
-                            android:id="@+id/imageView5"
-                            android:layout_width="15dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/facebook"
-                            android:layout_marginLeft="15dp"/>
-
-                        <LinearLayout
-                            android:layout_width="150dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="4.5">
-
-                            <LinearLayout
-                                android:layout_width="166dp"
-                                android:layout_height="84dp"
-
-                                android:orientation="vertical"
-                                android:weightSum="2"
-                                android:paddingLeft="20dp">
-
-
-                                <TextView
-                                    android:id="@+id/textView11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="bottom"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:text="Inflamyl"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textStyle="bold"/>
-
-                                <TextView
-                                    android:id="@+id/textView12"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_light"
-                                    android:text="2 pills, before meal"
-                                    android:textColor="@color/colorPrimaryDark"/>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_weight="2.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/check_circle"
-                            android:scaleType="center"
-                            android:layout_gravity="center"/>
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
+                </androidx.viewpager2.widget.ViewPager2>
 
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="8"
+                    android:layout_height="320dp"
                     app:columnCount="2"
                     app:rowCount="2"
                     android:padding="14dp"

@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 
 public interface ProgramAPI {
 
-    @GET("programs")
+    @GET("programs/")
     Call<List<ModelProgram>> getPrograms(@Query("user_id") int user_id);
 
     @POST("programs/")
@@ -23,8 +23,7 @@ public interface ProgramAPI {
     Call<List<Medication>> getProgramMeds(@Query("prog_id") int prog_id);
 
     @GET("medications/")
-    Call<List<Medication>> getProgramMedsPerUser(@Query("user_id") int user_id);
-
+    Call<List<Medication>> getMedsPerUser(@Query("user_id") int user_id);
 
     @Headers("Content-Type: application/json; charset=UTF-8")
     @POST("medications/")

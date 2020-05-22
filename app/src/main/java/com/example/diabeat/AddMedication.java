@@ -296,7 +296,7 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
                 showToast("Cat 3 selected!");
                 unselectBtnsCat();
                 v.setBackgroundResource(R.drawable.round_button);
-                category = "Lotion";
+                category = "Ointment";
                 break;
             }
             case R.id.btnCat4: {
