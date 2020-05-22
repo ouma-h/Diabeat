@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.prescriptions_card).setOnClickListener(this);
         findViewById(R.id.appointment_card).setOnClickListener(this);
+
         checkNotification();
     }
 
