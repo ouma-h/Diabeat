@@ -11,15 +11,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
-            android:id="@+id/imageView8"
-            android:layout_width="68dp"
-            android:layout_height="84dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="60dp"
+            android:id="@+id/icon"
+            android:layout_width="52dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/ic_bottle_pills"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,61 +28,45 @@
             android:id="@+id/medName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Inflamyl"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/program"
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_light"
-            android:text="Grippe"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toTopOf="@+id/imageView8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.484" />
 
         <TextView
             android:id="@+id/instuctions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="9dp"
-            android:layout_weight="1"
+            android:layout_marginStart="76dp"
+            android:layout_marginLeft="76dp"
             android:fontFamily="@font/poppins_light"
             android:text="2 pills, before meal"
             android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/medName" />
 
         <ImageView
             android:id="@+id/take"
-            android:layout_width="53dp"
-            android:layout_height="56dp"
+            android:layout_width="33dp"
+            android:layout_height="32dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/check_circle" />
 
         <ImageView
             android:id="@+id/skip"
-            android:layout_width="48dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="33dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="18dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"

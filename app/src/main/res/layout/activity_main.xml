@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/backgroundColor">
+    android:background="@color/backgroundColor"
+    android:orientation="horizontal">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/backgroundColor"
@@ -86,12 +86,11 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
-                android:layout_width="412dp"
-                android:layout_height="515dp"
-                android:layout_marginBottom="1dp"
-                android:orientation="vertical"
-                android:weightSum="10"
+                android:layout_width="413dp"
+                android:layout_height="588dp"
                 android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,60 +102,60 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50dp"
                     android:layout_marginRight="50dp"
-                    android:layout_marginBottom="6dp"
+
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Upcoming Medication"
+                    android:text="Today's Medication"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/medicationsViewPager"
-                    android:layout_width="370dp"
-                    android:layout_height="125dp"
+                    android:layout_width="395dp"
+                    android:layout_height="139dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="5dp"
                     android:clipToPadding="false"
                     android:foregroundGravity="center"
                     android:overScrollMode="never"
-                    android:paddingStart="40dp"
-                    android:paddingLeft="40dp"
-                    android:paddingEnd="40dp"
-                    android:paddingRight="40dp">
+                    android:paddingStart="45dp"
+                    android:paddingLeft="45dp"
+                    android:paddingEnd="45dp"
+                    android:paddingRight="45dp">
 
                 </androidx.viewpager2.widget.ViewPager2>
 
                 <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/mainGrid"
                     android:layout_width="match_parent"
                     android:layout_height="320dp"
-                    app:columnCount="2"
-                    app:rowCount="2"
                     android:padding="14dp"
                     app:alignmentMode="alignMargins"
-                    android:id="@+id/mainGrid"
-                    app:columnOrderPreserved="false">
+                    app:columnCount="2"
+                    app:columnOrderPreserved="false"
+                    app:rowCount="2">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/appointment_card"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="16dp"
-                        app:cardCornerRadius="15dp"
-                        app:layout_rowWeight="1"
-                        app:layout_columnWeight="1"
+                        android:layout_marginBottom="16dp"
+                        android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:clickable="true">
+                        app:cardCornerRadius="15dp"
+                        app:layout_column="0"
+                        app:layout_columnWeight="1"
+                        app:layout_row="0"
+                        app:layout_rowWeight="1">
 
                         <LinearLayout
-                            android:layout_margin="16dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:weightSum="2"
-                            >
+                            android:layout_margin="16dp"
+                            android:orientation="vertical"
+                            android:weightSum="2">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -184,21 +183,21 @@
                         android:id="@+id/dailyHealth_card"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="20dp"
-                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_marginBottom="16dp"
                         android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="15dp"
-                        app:layout_rowWeight="1"
-                        app:layout_columnWeight="1" >
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
+
                         <LinearLayout
-                            android:layout_margin="16dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:weightSum="2"
-                            >
+                            android:layout_margin="16dp"
+                            android:orientation="vertical"
+                            android:weightSum="2">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -220,25 +219,26 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/prescriptions_card"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="16dp"
-                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_marginBottom="16dp"
                         android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="15dp"
-                        app:layout_rowWeight="1"
-                        app:layout_columnWeight="1" >
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
+
                         <LinearLayout
-                            android:layout_margin="16dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:weightSum="2"
-                            >
+                            android:layout_margin="16dp"
+                            android:orientation="vertical"
+                            android:weightSum="2">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -261,25 +261,26 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/history_card"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="20dp"
-                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_marginBottom="16dp"
                         android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="15dp"
-                        app:layout_rowWeight="1"
-                        app:layout_columnWeight="1" >
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
+
                         <LinearLayout
-                            android:layout_margin="16dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:weightSum="2"
-                            >
+                            android:layout_margin="16dp"
+                            android:orientation="vertical"
+                            android:weightSum="2">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -301,32 +302,27 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
-                </androidx.gridlayout.widget.GridLayout>
 
+                </androidx.gridlayout.widget.GridLayout>
 
                 <ImageButton
                     android:id="@+id/emergency"
                     android:layout_width="70dp"
-                    android:layout_height="74dp"
+                    android:layout_height="66dp"
                     android:background="@drawable/border_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     app:srcCompat="@drawable/ic_telephone" />
 
-
-
-
-
-
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
 </LinearLayout>
 
 

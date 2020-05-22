@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -171,6 +172,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
                 setLastTemp(HealthStatus.this,temperatureobj);
+                recreate();
             }
 
             @Override
@@ -297,12 +299,11 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                 addTemperature(tp, currentDateTime(apiFormat));
                 temperature.setText(tp);
                 temp_date.setText(currentDateTime(display));
-                myChart.getData().notifyDataChanged();
-                myChart.notifyDataSetChanged();
                 bottomSheetDialog.dismiss();
-                recreate();
 
-
+                if(Integer.parseInt(tp)>=40){
+                    sendSMS(tp);
+                }
             }
         });
 
@@ -385,6 +386,13 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void sendSMS(String temp) {
+        Uri uri = Uri.parse("smsto: 52644697");
+        Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+        it.putExtra("sms_body", "URGENCE! Ma température est "+ temp);
+        startActivity(it);
+    }
+
 
 //    \*************************************** TEMPERATURE CHART *****************************************************\
 
@@ -451,7 +459,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < TempList.size(); i++) {
 
             yValues.add(new Entry(i, Float.parseFloat(TempList.get(i).getTemp())));
-            dateValues[i] = (/*TempList.get(i).getTemp_date().substring(0,10)+" "+*/TempList.get(i).getTemp_date().substring(11, 16));
+            dateValues[i] = (TempList.get(i).getTemp_date().substring(11, 16));
         }
         setLineGraph(yValues, dateValues);
     }

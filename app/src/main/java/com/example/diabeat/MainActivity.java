@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.example.diabeat.apiBackend.ProgramAPI;
 import com.example.diabeat.apiBackend.RetrofitClientInstance;
+import com.example.diabeat.models.Medication;
 import com.example.diabeat.models.ModelProgram;
 import com.example.diabeat.models.Doctor;
 import com.example.diabeat.models.User;
@@ -40,7 +41,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ViewPager2 medicationsViewPager;
     User user;
     ProgramAPI programAPI;
+    Calendar calendar;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         userFirstName = findViewById(R.id.userFirstName);
-        medicationsViewPager = findViewById(R.id.medicationsViewPager);
+
 
         user = getUserInfo(this);
         if (user.getFirst_name().length()>2) {
@@ -70,8 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             userFirstName.setText("Hi, Guest!");
         }
+        getMedications(user.getId());
 
-
+        medicationsViewPager = findViewById(R.id.medicationsViewPager);
 
         medicationsViewPager.setClipToPadding(false);
         medicationsViewPager.setClipChildren(false);
@@ -97,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.prescriptions_card).setOnClickListener(this);
         findViewById(R.id.appointment_card).setOnClickListener(this);
 
-        Calendar calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
         TextView textViewDate = findViewById(R.id.currentDate);
@@ -179,22 +184,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomSheetDialog.show();
     }
 
-    public void displayPrograms(Integer user_id){
+    public void getMedications(Integer user_id){
 
         programAPI = RetrofitClientInstance.getProgramAPI();
-        Call<List<ModelProgram>> call = programAPI.getPrograms(user_id);
-
-        call.enqueue(new Callback<List<ModelProgram>>() {
-
+        Call<List<Medication>> call = programAPI.getMedsPerUser(user_id);
+        call.enqueue(new Callback<List<Medication>>() {
             @Override
-            public void onResponse(Call<List<ModelProgram>> call, Response<List<ModelProgram>> response) {
-                medicationsViewPager.setAdapter(new MedicationCardsSlider(response.body()) );
+            public void onResponse(Call<List<Medication>> call, Response<List<Medication>> response) {
+                List<Medication> medsPerDay = new ArrayList<>();
+                assert response.body() != null;
+                for(final Medication medication : response.body()) {
+                    switch (calendar.get(Calendar.DAY_OF_WEEK)){
+                        case 1 :
+                            if (medication.getSun()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                        case 2 :
+                            if (medication.getMon()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                        case 3 :
+                            if (medication.getTue()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                        case 4 :
+                            if (medication.getWed()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                        case 5 :
+                            if (medication.getThu()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                        case 6 :
+                            if (medication.getFri()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                        case 7 :
+                            if (medication.getSat()){
+                                medsPerDay.add(medication);
+                            }
+                            break;
+                    }
+
+                }
+                medicationsViewPager.setAdapter(new MedicationCardsSlider(medsPerDay) );
             }
 
-
             @Override
-            public void onFailure(Call<List<ModelProgram>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+            public void onFailure(Call<List<Medication>> call, Throwable t) {
+
             }
         });
     }
