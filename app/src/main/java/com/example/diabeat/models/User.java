@@ -9,6 +9,7 @@ public class User {
     private String birthday;
 
     private String password;
+    private String emergency_phone;
     private String authToken;
 
 
@@ -27,6 +28,14 @@ public class User {
         this.password = password;
         this.first_name = firstName;
         this.last_name = lastName;
+    }
+
+    public String getEmergency_phone() {
+        return emergency_phone;
+    }
+
+    public void setEmergency_phone(String emergency_phone) {
+        this.emergency_phone = emergency_phone;
     }
 
     public String getUsername() {

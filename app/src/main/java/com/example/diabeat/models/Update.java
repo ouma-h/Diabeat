@@ -7,12 +7,23 @@ public class Update {
     private String last_name;
     private String birthdate;
     private String password;
+    private String emergency_phone;
 
-    public Update(String email, String first_name, String last_name, String birthdate) {
+
+    public String getEmergency_phone() {
+        return emergency_phone;
+    }
+
+    public void setEmergency_phone(String emergency_phone) {
+        this.emergency_phone = emergency_phone;
+    };
+
+    public Update(String email, String first_name, String last_name, String birthdate, String emergency_phone) {
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
         this.birthdate = birthdate;
+        this.emergency_phone = emergency_phone;
     }
 
     public void setUsername(String username) {

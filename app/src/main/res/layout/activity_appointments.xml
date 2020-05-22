@@ -12,24 +12,41 @@
         android:orientation="vertical"
         android:paddingTop="15dp"
         tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:weightSum="5"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/back_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        app:srcCompat="@drawable/arrow_back" />
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                app:srcCompat="@drawable/arrow_back" />
 
-    <TextView
-        android:id="@+id/healthStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/appointments"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_weight="2"
+                android:layout_width="52dp"
+                android:layout_height="63dp"
+                app:srcCompat="@drawable/ic_male_nurse" />
+
+            <TextView
+                android:id="@+id/healthStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/appointments"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

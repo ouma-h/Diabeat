@@ -17,8 +17,10 @@
 
         <TextView
             android:id="@+id/icon"
-            android:layout_width="52dp"
-            android:layout_height="49dp"
+            android:layout_width="60dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/ic_bottle_pills"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +30,8 @@
             android:id="@+id/medName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Inflamyl"
@@ -42,36 +44,15 @@
             android:id="@+id/instuctions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginLeft="76dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginLeft="116dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_light"
             android:text="2 pills, before meal"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/medName" />
-
-        <ImageView
-            android:id="@+id/take"
-            android:layout_width="33dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/check_circle" />
-
-        <ImageView
-            android:id="@+id/skip"
-            android:layout_width="33dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/take"
-            app:srcCompat="@drawable/ic_close" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-    private void updateHistory(Boolean isDiscarded){
+    public void updateHistory(Boolean isDiscarded){
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         String hist = sharedPreferences.getString("HISTORY", "");
 
@@ -239,7 +239,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             editor.putString("HISTORY", medObject);
         }
-
         editor.apply();
     }
 
@@ -292,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 }
-                medicationsViewPager.setAdapter(new MedicationCardsSlider(medsPerDay) );
+                medicationsViewPager.setAdapter(new MedicationCardsSlider(medsPerDay));
             }
 
             @Override

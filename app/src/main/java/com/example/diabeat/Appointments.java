@@ -81,7 +81,7 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(Appointments.this, "code: " + response.code(),
+                    Toast.makeText(Appointments.this, "Getting Appointments Failed",
                             Toast.LENGTH_LONG).show();
                     return;
                 }

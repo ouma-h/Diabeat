@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(SignUpActivity.this, "code: "+ response.code(),
+                    Toast.makeText(SignUpActivity.this, "Try Again!",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -134,6 +134,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+
+        Toast.makeText(SignUpActivity.this, "Please Wait!",
+                Toast.LENGTH_LONG).show();
         userSignUp();
     }
 

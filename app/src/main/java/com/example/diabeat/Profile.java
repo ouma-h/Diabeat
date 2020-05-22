@@ -1,12 +1,10 @@
 package com.example.diabeat;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,13 +17,6 @@ import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.apiBackend.UserApi;
 import com.example.diabeat.models.Update;
 import com.example.diabeat.models.User;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -34,16 +25,14 @@ import retrofit2.Response;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
-    private final static String FILE_NAME = "userId.txt";
 
-    Integer userId ;
     EditText lastName;
     EditText firstName;
     EditText birthday;
+    EditText emergencyNumber;
     UserApi userApi;
     User user;
 
-    @SuppressWarnings("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +40,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         lastName = findViewById(R.id.lastName);
         firstName = findViewById(R.id.firstName);
         birthday = findViewById(R.id.birthdayInput);
+        emergencyNumber = findViewById(R.id.emergencyNumber);
         findViewById(R.id.saveProfile).setOnClickListener(this);
         user = MainActivity.getUserInfo(this);
 
@@ -71,14 +61,25 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         String vlastName = lastName.getText().toString().trim();
         String vfirstName = firstName.getText().toString().trim();
         String vbirthday = birthday.getText().toString().trim();
+        String vemergencyNumber = emergencyNumber.getText().toString().trim();
+        if (vemergencyNumber.isEmpty()) {
+            emergencyNumber.setError("Emergency Number is required");
+            emergencyNumber.requestFocus();
+            return;
+        }
+        if (vemergencyNumber.length() < 8) {
+            emergencyNumber.setError("Emergency Number should be atleast 8 character long");
+            emergencyNumber.requestFocus();
+            return;
+        }
 
         userApi = RetrofitClientInstance.getUserApi();
-        updateUser(vlastName, vfirstName, vbirthday);
+        updateUser(vlastName, vfirstName, vbirthday, vemergencyNumber);
     }
 
-    public void updateUser(String lastName, String firstName, String birthday){
+    public void updateUser(String lastName, String firstName, String birthday, String emergencyNumber){
 
-        Update update = new Update(user.getEmail(), firstName, lastName, birthday);
+        Update update = new Update(user.getEmail(), firstName, lastName, birthday, emergencyNumber);
 
         Call<User> call = userApi.updateUser(user.getId(),update);
         call.enqueue(new Callback<User>() {

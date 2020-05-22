@@ -1,6 +1,8 @@
 package com.example.diabeat;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diabeat.models.Medication;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -94,6 +97,9 @@ public class MedicationCardsSlider extends RecyclerView.Adapter<MedicationCardsS
 
             instructions.setText(inst);
         }
+
+
     }
+
 }
 

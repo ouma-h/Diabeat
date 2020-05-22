@@ -33,9 +33,7 @@ public class ProgramSingle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_single);
-        TextView title = (TextView)findViewById(R.id.progTitle);
         prog_name = getIntent().getStringExtra("PROG_NAME");
-        title.setText("Program: "+prog_name);
         apiHolder = RetrofitClientInstance.getProgramAPI();
         progID = getIntent().getIntExtra("PROG_ID",0);
         displayMedications(progID);

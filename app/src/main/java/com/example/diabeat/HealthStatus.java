@@ -167,7 +167,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<Temperature> call, Response<Temperature> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(HealthStatus.this, "code: "+ response.code(),
+                    Toast.makeText(HealthStatus.this, "adding Temperature failed!",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -195,7 +195,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<BloodPressure> call, Response<BloodPressure> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(HealthStatus.this, "code: "+ response.code(),
+                    Toast.makeText(HealthStatus.this, "Adding Blood pressure failed",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -221,7 +221,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<List<Temperature>> call, Response<List<Temperature>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(HealthStatus.this, "code: " + response.code(),
+                    Toast.makeText(HealthStatus.this, "Getting Temperatures failed",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -245,7 +245,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<List<BloodPressure>> call, Response<List<BloodPressure>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(HealthStatus.this, "code: "+ response.code(),
+                    Toast.makeText(HealthStatus.this, "Getting Blood pressures failed",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -387,10 +387,17 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sendSMS(String temp) {
-        Uri uri = Uri.parse("smsto: 52644697");
-        Intent it = new Intent(Intent.ACTION_SENDTO, uri);
-        it.putExtra("sms_body", "URGENCE! Ma température est "+ temp);
-        startActivity(it);
+        if(user.getEmergency_phone().length()> 0){
+            Uri uri = Uri.parse("smsto:"+ user.getEmergency_phone());
+            Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+            it.putExtra("sms_body", "URGENCE! Ma température est "+ temp);
+            startActivity(it);
+        }else{
+            Toast.makeText(HealthStatus.this, "Emergency Number Not Defined!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
 

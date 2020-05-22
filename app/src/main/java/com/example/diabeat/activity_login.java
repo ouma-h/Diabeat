@@ -79,7 +79,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(activity_login.this, "code: "+ response.code(),
+                    Toast.makeText(activity_login.this, "Try Again",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -113,6 +113,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        Toast.makeText(activity_login.this, "Please wait!",
+                Toast.LENGTH_LONG).show();
         userLogin();
     }
 }
