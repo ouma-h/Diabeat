@@ -22,7 +22,9 @@ import android.widget.Toast;
 import com.example.diabeat.apiBackend.ProgramAPI;
 import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.models.Medication;
+import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -245,6 +247,8 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
     }
     private void setRedminder(Medication med){
         Calendar daterem = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+        Gson gson = new Gson();
         daterem.set(Calendar.HOUR_OF_DAY, mHour);
         daterem.set(Calendar.MINUTE, mMinute);
         daterem.set(Calendar.SECOND, 0);
@@ -253,7 +257,8 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
         AlarmManager medReminder = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         intent.putExtra("Title", "Diabete: "+getIntent().getStringExtra("PROG_NAME"));
-        intent.putExtra("Content", "It's time to take your "+daterem.getTime().toString()+" "+med.getName()+". You need "+med.getAmount()+" unit(s).");
+        intent.putExtra("Content", "It's time to take your "+df.format(daterem.getTime())+" "+med.getName()+". You need "+med.getAmount()+" unit(s).");
+        intent.putExtra("med", gson.toJson(med));
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
 
