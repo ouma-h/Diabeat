@@ -7,6 +7,10 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -23,7 +27,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.diabeat.apiBackend.ProgramAPI;
+import com.example.diabeat.apiBackend.RetrofitClientInstance;
+import com.example.diabeat.models.ModelProgram;
 import com.example.diabeat.models.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
@@ -32,11 +40,18 @@ import com.google.gson.Gson;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int REQUEST_PHONE_CALL = 0;
     private TextView userFirstName;
+    ViewPager2 medicationsViewPager;
     User user;
+    ProgramAPI programAPI;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -45,29 +60,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         userFirstName = findViewById(R.id.userFirstName);
+        medicationsViewPager = findViewById(R.id.medicationsViewPager);
+
+        user = getUserInfo(this);
+        if (user.getFirst_name().length()>2) {
+            userFirstName.setText("Hi, " + user.getFirst_name() + "!");
+        }else{
+            userFirstName.setText("Hi, Guest!");
+        }
+
+
+
+        medicationsViewPager.setClipToPadding(false);
+        medicationsViewPager.setClipChildren(false);
+        medicationsViewPager.setOffscreenPageLimit(3);
+        medicationsViewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(20));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.95f + r* 0.05f);
+            }
+        });
+
+        medicationsViewPager.setPageTransformer(compositePageTransformer);
 
         findViewById(R.id.profile).setOnClickListener(this);
         findViewById(R.id.dailyHealth_card).setOnClickListener(this);
         findViewById(R.id.logout).setOnClickListener(this);
         findViewById(R.id.emergency).setOnClickListener(this);
-
-        user = getUserInfo(this);
-        if (user.getFirst_name().length()>1) {
-            userFirstName.setText("Hi, " + user.getFirst_name() + "!");
-
-        }
+        findViewById(R.id.prescriptions_card).setOnClickListener(this);
+        findViewById(R.id.appointment_card).setOnClickListener(this);
 
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-/*
-        String currentTime = DateFormat.getTimeInstance().format(calendar.getTime());
-*/
+
         TextView textViewDate = findViewById(R.id.currentDate);
         textViewDate.setText(currentDate);
 
 
-        findViewById(R.id.prescriptions_card).setOnClickListener(this);
-        findViewById(R.id.appointment_card).setOnClickListener(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -76,8 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         if(!user.getFirst_name().equals(userFirstName)){
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
-        }else if (user.getFirst_name().equals("")){
-            userFirstName.setText(R.string.hi_guest);
         }
     }
 
@@ -132,6 +164,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    public void displayPrograms(Integer user_id){
+
+        programAPI = RetrofitClientInstance.getProgramAPI();
+        Call<List<ModelProgram>> call = programAPI.getPrograms(user_id);
+
+        call.enqueue(new Callback<List<ModelProgram>>() {
+
+            @Override
+            public void onResponse(Call<List<ModelProgram>> call, Response<List<ModelProgram>> response) {
+                medicationsViewPager.setAdapter(new MedicationCardsSlider(response.body()) );
+            }
+
+
+            @Override
+            public void onFailure(Call<List<ModelProgram>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View v) {

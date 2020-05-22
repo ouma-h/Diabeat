@@ -1,5 +1,6 @@
 package com.example.diabeat;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -7,6 +8,7 @@ import androidx.cardview.widget.CardView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
@@ -35,10 +37,14 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -68,6 +74,8 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
 
         healthStatusApi = RetrofitClientInstance.getHealthStatusApi();
 
+
+
         display = new SimpleDateFormat("EEEE, MMMM d, yyyy 'at' h:mm a");
         apiFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 
@@ -78,16 +86,25 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.addTemperature).setOnClickListener(this);
         findViewById(R.id.addBloodPressure).setOnClickListener(this);
 
-
         temperature = findViewById(R.id.temp_measure);
         diastolic = findViewById(R.id.diastolic);
         systolic = findViewById(R.id.systolic);
         temp_date = findViewById(R.id.temp_date);
         bp_date = findViewById(R.id.bp_date);
 
-
         getTemperatures(user.getId());
         getBloodPressures(user.getId());
+
+        try {
+            getTempInfo(this, temperature, temp_date, apiFormat,display);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            getBloodPressureInfo(this, systolic, diastolic, bp_date, apiFormat,display);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -143,8 +160,8 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
     public void addTemperature(String temp, String temp_date) {
 
 
-        Temperature temperature = new Temperature(user.getId(), temp, temp_date);
-        Call<Temperature> call = healthStatusApi.addTemperature(temperature);
+        final Temperature temperatureobj = new Temperature(user.getId(), temp, temp_date);
+        Call<Temperature> call = healthStatusApi.addTemperature(temperatureobj);
         call.enqueue(new Callback<Temperature>() {
             @Override
             public void onResponse(Call<Temperature> call, Response<Temperature> response) {
@@ -153,6 +170,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                             Toast.LENGTH_LONG).show();
                     return;
                 }
+                setLastTemp(HealthStatus.this,temperatureobj);
             }
 
             @Override
@@ -168,7 +186,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("ResourceAsColor")
     public void addBloodPressure(String sys, String dias, String bloodPressure_date) {
 
-        BloodPressure bloodPressure = new BloodPressure(user.getId(), dias, sys, bloodPressure_date);
+        final BloodPressure bloodPressure = new BloodPressure(user.getId(),sys , dias,  bloodPressure_date);
 
         Call<BloodPressure> call = healthStatusApi.addBloodPressure(bloodPressure);
         call.enqueue(new Callback<BloodPressure>() {
@@ -179,6 +197,8 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                             Toast.LENGTH_LONG).show();
                     return;
                 }
+
+                setLastBloodPressure(HealthStatus.this, bloodPressure);
             }
 
             @Override
@@ -205,6 +225,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                 }
                 TempList = response.body();
                 TemperatureValues();
+
             }
 
             @Override
@@ -279,6 +300,9 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                 myChart.getData().notifyDataChanged();
                 myChart.notifyDataSetChanged();
                 bottomSheetDialog.dismiss();
+                recreate();
+
+
             }
         });
 
@@ -400,6 +424,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
         dataSets.add(set1);
 
         LineData data = new LineData(dataSets);
+        myChart.notifyDataSetChanged();
         myChart.setData(data);
         myChart.invalidate();
     }
@@ -432,6 +457,58 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
     }
 
     //    \*************************************** ************* *****************************************************\
+
+
+
+
+    //saving the last temperature taken
+    public static void setLastTemp(@NonNull Context context, Temperature temperature) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String tempJson = gson.toJson(temperature);
+        editor.putString("TEMP", tempJson);
+        editor.apply();
+    }
+
+    //saving the last bp taken
+    public static void setLastBloodPressure(@NonNull Context context, BloodPressure bloodPressure) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String bloodPressureString = gson.toJson(bloodPressure);
+        editor.putString("BLOODPRESSURE", bloodPressureString);
+        editor.apply();
+    }
+
+    public static void getTempInfo(@NonNull Context context, TextView temperature, TextView temp_date, SimpleDateFormat input, SimpleDateFormat output) throws ParseException {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("TEMP", "");
+        Temperature temp = gson.fromJson(json, Temperature.class);
+        if(temp != null ){
+            temperature.setText(temp.getTemp());
+            Date date = input.parse(temp.getTemp_date());
+            String outputText = output.format(date);
+            temp_date.setText(outputText);
+        }
+
+    }
+
+    public static void getBloodPressureInfo(@NonNull Context context, TextView sys, TextView dias, TextView bpDate, SimpleDateFormat input, SimpleDateFormat output) throws ParseException {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("BLOODPRESSURE", "");
+        BloodPressure bp = gson.fromJson(json, BloodPressure.class);
+        if (bp != null){
+
+            sys.setText(bp.getSystolic());
+            dias.setText(bp.getDiastolic());
+            Date date = input.parse(bp.getBloodPressure_date());
+            String outputText = output.format(date);
+            bpDate.setText(outputText);
+        }
+    }
 
     public String currentDateTime(SimpleDateFormat s) {
         Calendar calendar = Calendar.getInstance();
