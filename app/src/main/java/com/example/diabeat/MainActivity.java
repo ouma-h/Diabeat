@@ -14,12 +14,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +37,7 @@ import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.models.Medication;
 import com.example.diabeat.models.ModelProgram;
 import com.example.diabeat.models.Doctor;
+import com.example.diabeat.models.Medication;
 import com.example.diabeat.models.User;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView userFirstName;
     ViewPager2 medicationsViewPager;
     User user;
+    private String medObject;
     ProgramAPI programAPI;
     Calendar calendar;
 
@@ -99,6 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.dailyHealth_card).setOnClickListener(this);
         findViewById(R.id.logout).setOnClickListener(this);
         findViewById(R.id.emergency).setOnClickListener(this);
+        findViewById(R.id.history_card).setOnClickListener(this);
+
+        user = getUserInfo(this);
+        if (user.getFirst_name().length()>1) {
+            userFirstName.setText("Hi, " + user.getFirst_name() + "!");
+
+        }
         findViewById(R.id.prescriptions_card).setOnClickListener(this);
         findViewById(R.id.appointment_card).setOnClickListener(this);
 
@@ -110,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.prescriptions_card).setOnClickListener(this);
         findViewById(R.id.appointment_card).setOnClickListener(this);
+        checkNotification();
     }
 
 
@@ -121,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             userFirstName.setText("Hi, " + user.getFirst_name() + "!");
         }
     }
+
 
     public static User getUserInfo(@NonNull Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
@@ -134,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("USER");
+        editor.remove("HISTORY");
         editor.apply();
         Intent myIntent = new Intent(getBaseContext(), activity_login.class);
         startActivity(myIntent);
@@ -158,8 +172,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomSheetView.findViewById(R.id.btnCallSAMU).setOnClickListener(this);
         bottomSheetView.findViewById(R.id.btnCallPolice).setOnClickListener(this);
         bottomSheetView.findViewById(R.id.btnCallAmb).setOnClickListener(this);
-        bottomSheetDialog.show();
 
+        bottomSheetDialog.show();
     }
 
     private void makeCall(String phoneNum) {
@@ -179,9 +193,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         );
         final View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(
                 R.layout.confirm_skip,
-                (LinearLayout) findViewById(R.id.dialog));
+                (LinearLayout) findViewById(R.id.confirmSkip));
+
+        bottomSheetView.findViewById(R.id.btnConfirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateHistory(false);
+                bottomSheetDialog.dismiss();
+            }
+        });
+        bottomSheetView.findViewById(R.id.btnSkip).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateHistory(true);
+                bottomSheetDialog.dismiss();
+            }
+        });
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
+    }
+    private void checkNotification(){
+        NotificationManager notifyMgr = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (getIntent().getExtras() != null) {
+            Bundle b = getIntent().getExtras();
+            boolean cameFromNotification = b.getBoolean("fromNotification");
+            if(cameFromNotification) {
+                medObject = b.getString("med");
+                openConfirmDialog();
+                notifyMgr.cancel(1);
+            }
+        }
+    }
+    private void updateHistory(Boolean isDiscarded){
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        String hist = sharedPreferences.getString("HISTORY", "");
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //editor.putString("HISTORY", "");
+        Gson gson = new Gson();
+        Medication med = gson.fromJson(medObject, Medication.class);
+        med.setIs_discarded(isDiscarded);
+        medObject = gson.toJson(med);
+        if(hist.length()>0){
+            editor.putString("HISTORY", hist+","+medObject);
+        } else {
+            editor.putString("HISTORY", medObject);
+        }
+
+        editor.apply();
     }
 
     public void getMedications(Integer user_id){
@@ -266,6 +325,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.appointment_card:
                 Intent appCard = new Intent(this, Appointments.class);
                 startActivity(appCard);
+                break;
+            case R.id.history_card:
+                Intent histCard = new Intent(this, History.class);
+                startActivity(histCard);
                 break;
             case R.id.emergency:
                 openEmergencyDialog();

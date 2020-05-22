@@ -46,14 +46,16 @@ public class NotificationHelper extends ContextWrapper {
         }
         return mManager;
     }
-    public NotificationCompat.Builder getChannelNotification(String Title, String content) {
+    public NotificationCompat.Builder getChannelNotification(String Title, String content, String med) {
         Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
-        notificationIntent.putExtra("methodName","myMethod");
+        notificationIntent.putExtra("fromNotification", true);
+        notificationIntent.putExtra("med", med);
 
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         PendingIntent intent = PendingIntent.getActivity(getApplicationContext(), 0,
-                notificationIntent, 0);
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle(Title)
                 .setContentText(content)

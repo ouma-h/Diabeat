@@ -59,7 +59,6 @@ public class MedicationCardsSlider extends RecyclerView.Adapter<MedicationCardsS
             icon = itemView.findViewById(R.id.icon);
         }
 
-
         void setMedicationData(Medication medication) {
 
             System.out.println(medication.getName());

@@ -23,6 +23,7 @@ public class Medication {
     private Boolean isBefore;
     private Integer prog_id;
     private Integer user_id;
+    private Boolean is_discarded;
 
     Medication() {
 
@@ -47,6 +48,28 @@ public class Medication {
         this.isBefore = isBefore;
         this.prog_id = prog_id;
         this.user_id = user_id;
+    }
+
+    public Medication(String name, Integer amount, String category, Integer duration, String duration_unit, Boolean isMon, Boolean isTue, Boolean isWed, Boolean isThu, Boolean isFri, Boolean isSat, Boolean isSun, String morning, String midday, String night, Boolean isBefore, Integer prog_id, Integer user_id, Boolean is_discarded) {
+        this.name = name;
+        this.amount = amount;
+        this.category = category;
+        this.duration = duration;
+        this.duration_unit = duration_unit;
+        this.isMon = isMon;
+        this.isTue = isTue;
+        this.isWed = isWed;
+        this.isThu = isThu;
+        this.isFri = isFri;
+        this.isSat = isSat;
+        this.isSun = isSun;
+        this.morning = morning;
+        this.midday = midday;
+        this.night = night;
+        this.isBefore = isBefore;
+        this.prog_id = prog_id;
+        this.user_id = user_id;
+        this.is_discarded = is_discarded;
     }
 
     public String getName() {
@@ -118,5 +141,13 @@ public class Medication {
     }
     public Integer getUser_id() {
         return user_id;
+    }
+
+    public Boolean getIs_discarded() {
+        return is_discarded;
+    }
+
+    public void setIs_discarded(Boolean is_discarded) {
+        this.is_discarded = is_discarded;
     }
 }
