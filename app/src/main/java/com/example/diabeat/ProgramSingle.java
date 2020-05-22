@@ -94,5 +94,6 @@ public class ProgramSingle extends AppCompatActivity {
         addmedIntent.putExtra("PROG_ID", progID);
         addmedIntent.putExtra("PROG_NAME", prog_name);
         startActivity(addmedIntent);
+        finish();
     }
 }

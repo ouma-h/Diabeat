@@ -164,6 +164,7 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
                 Intent spIntent = new Intent(AddMedication.this, ProgramSingle.class);
                 spIntent.putExtra("PROG_ID", progID);
                 startActivity(spIntent);
+                finish();
             }
 
             @Override
