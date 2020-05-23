@@ -5,47 +5,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/backgroundColor"
     tools:context=".Profile">
 
-
-    <TextView
-        android:id="@+id/editProfile"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/edit_profile"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="match_parent"
-        android:layout_height="524dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfile"
-        app:srcCompat="@drawable/profile_bg" />
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/arrow_back" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="52dp"
+            android:layout_height="63dp"
+            android:layout_weight="2"
+            app:srcCompat="@drawable/profile_icon" />
+
+        <TextView
+            android:id="@+id/healthStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/edit_profile"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="530dp"
+        android:layout_height="0dp"
         android:layout_marginTop="25dp"
+        android:layout_marginBottom="93dp"
         android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         android:paddingTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfile">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-        <LinearLayout
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name"
+            android:layout_marginRight="60dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="250dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rounded_corners_edit_views"
+            tools:layout_editor_absoluteX="119dp"
+            tools:layout_editor_absoluteY="362dp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name"
+            android:textSize="20sp"
+            android:layout_marginRight="60dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="250dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rounded_corners_edit_views"
+            tools:layout_editor_absoluteX="119dp"
+            tools:layout_editor_absoluteY="362dp" />
+
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -54,10 +112,11 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:orientation="vertical"
                 android:paddingLeft="10dp">
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -78,11 +137,12 @@
                     tools:layout_editor_absoluteX="119dp"
                     tools:layout_editor_absoluteY="362dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_weight="1"
+                android:orientation="vertical"
                 android:paddingRight="10dp">
 
                 <TextView
@@ -105,7 +165,7 @@
                     tools:layout_editor_absoluteY="362dp" />
             </LinearLayout>
 
-        </LinearLayout>
+        </LinearLayout>-->
 
 
         <TextView

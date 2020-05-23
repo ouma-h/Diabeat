@@ -263,6 +263,25 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                     TextView date = (TextView) view.findViewById(R.id.bp_date_card);
                     date.setText(bloodPressure.getBloodPressure_date());
 
+                   ImageView icon = view.findViewById(R.id.icon_bp);
+                    switch (checkBloodPressure(bloodPressure.getSystolic(),bloodPressure.getDiastolic() )){
+                        case "low":
+                            icon.setBackgroundResource(R.drawable.ic_blood_pressure_low);
+                            break;
+                        case "ideal":
+                            icon.setBackgroundResource(R.drawable.ic_blood_pressure_normal);
+                            break;
+                        case "pre-high":
+                            icon.setBackgroundResource(R.drawable.ic_blood_pressure_prehigh);
+                            break;
+                        case "high":
+                            icon.setBackgroundResource(R.drawable.ic_blood_pressure_high);
+                            break;
+                        case "non_valid":
+                            icon.setImageResource(R.drawable.ic_measure);
+                            break;
+                    }
+
                     ViewGroup insertPoint = (ViewGroup) findViewById(R.id.blood_pressure_list);
                     insertPoint.addView(view, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
                 }
@@ -355,21 +374,22 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                 TextView date = (TextView) view.findViewById(R.id.bp_date_card);
                 ImageView icon = view.findViewById(R.id.icon_bp);
                 date.setText(bp_date.getText());
-                switch (checkBloodPressure(s, d)){
-
+                switch (checkBloodPressure(s,d )){
                     case "low":
-                        icon.setBackgroundTintList(ColorStateList.valueOf(R.color.colorPrimaryDark));
+                        icon.setBackgroundResource(R.drawable.ic_blood_pressure_low);
                         break;
                     case "ideal":
-                        icon.setBackgroundTintList(ColorStateList.valueOf(R.color.ButtonColor));
+                        icon.setBackgroundResource(R.drawable.ic_blood_pressure_normal);
                         break;
                     case "pre-high":
-                        icon.setBackgroundTintList(ColorStateList.valueOf(R.color.pre_high));
+                        icon.setBackgroundResource(R.drawable.ic_blood_pressure_prehigh);
                         break;
                     case "high":
-                        icon.setBackgroundTintList(ColorStateList.valueOf(R.color.high));
+                        icon.setBackgroundResource(R.drawable.ic_blood_pressure_high);
                         break;
-
+                    case "non_valid":
+                        icon.setImageResource(R.drawable.ic_measure);
+                        break;
                 }
 
                 ViewGroup insertPoint = (ViewGroup) findViewById(R.id.blood_pressure_list);
