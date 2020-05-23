@@ -253,8 +253,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView7"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="45dp"
+                                android:layout_height="56dp"
                                 android:layout_weight="1"
                                 app:srcCompat="@drawable/ic_medical_prescription" />
 
@@ -295,8 +295,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView12"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="42dp"
+                                android:layout_height="55dp"
                                 android:layout_weight="1"
                                 app:srcCompat="@drawable/ic_medical_records" />
 

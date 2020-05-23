@@ -70,8 +70,8 @@ public class MedicationCardsSlider extends RecyclerView.Adapter<MedicationCardsS
             inst = medication.getAmount().toString();
             switch (medication.getCategory()) {
                 case "Inhaled":
-                    inst += " Inhalation(s)";
-                    icon.setBackgroundResource(R.drawable.inhaling);
+                    inst += " Spoon(s)";
+                    icon.setBackgroundResource(R.drawable.ic_inhealing);
                     break;
                 case "Pills":
                     inst += " Pill(s)";
@@ -79,7 +79,8 @@ public class MedicationCardsSlider extends RecyclerView.Adapter<MedicationCardsS
                     break;
                 case "Ointment":
                     inst += " Ointment(s)";
-                    icon.setBackgroundResource(R.drawable.ic_cream);
+                    icon.setBackgroundResource(R.
+                            drawable.ic_cream);
                     break;
                 case "Syringe":
                     inst += " Syringe(s)";
