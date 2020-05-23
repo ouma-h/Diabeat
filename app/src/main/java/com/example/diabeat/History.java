@@ -42,7 +42,7 @@ public class History extends AppCompatActivity {
         String toshow = "";
         for(final Medication med : meds) {
             LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = vi.inflate(R.layout.medication_card, null, false);
+            View v = vi.inflate(R.layout.history_card, null, false);
 
             ImageView catIm = (ImageView) v.findViewById(R.id.imCategory);
             switch (med.getCategory()) {

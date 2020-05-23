@@ -12,9 +12,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -25,7 +27,9 @@ import com.example.diabeat.models.Medication;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,6 +69,7 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
     private Boolean isSat = false;
     private Boolean isSun = false;
     private Integer prog_id;
+    private String durationUnit;
     // BTN
     private Button btnSubmit;
     private Button freqMorning;
@@ -80,6 +85,9 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
     private Button btnSat;
     private Button btnSun;
     private Button btnHolder;
+
+    // Spinner
+    private Spinner pickDU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +137,23 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
         btnSat.setOnClickListener(this);
         btnSun = (Button)findViewById(R.id.btnSUn);
         btnSun.setOnClickListener(this);
+
+        pickDU = findViewById(R.id.spinnerUnit);
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Day(s)");
+        categories.add("Week(s)");
+        categories.add("Month(s)");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        pickDU.setAdapter(dataAdapter);
+
     }
     public void submitMed(){
         btnSubmit.setEnabled(false);
@@ -138,6 +163,8 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
         amount = Integer.parseInt(medAmount.getText().toString());
         EditText medDuration = (EditText)findViewById(R.id.medDuration);
         duration = Integer.parseInt(medDuration.getText().toString());
+
+        String duration_unit = pickDU.getSelectedItem().toString();
 
         if(freqMorning.getText().toString().length()>1) {
             morning = freqMorning.getText().toString();
@@ -149,7 +176,7 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
             night = freqNight.getText().toString();
         }
 
-        Medication med = new Medication(name,amount,category,duration,"week", isMon, isTue, isWed, isThu, isFri, isSat, isSun, morning, midday, night,isBefore, progID, MainActivity.getUserInfo(this).getId());
+        Medication med = new Medication(name,amount,category,duration,duration_unit, isMon, isTue, isWed, isThu, isFri, isSat, isSun, morning, midday, night,isBefore, progID, MainActivity.getUserInfo(this).getId());
         Call<Medication> call = apiHolder.createMedication(med);
         call.enqueue(new Callback<Medication>() {
             @Override
@@ -253,8 +280,8 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
         daterem.set(Calendar.HOUR_OF_DAY, mHour);
         daterem.set(Calendar.MINUTE, mMinute);
         daterem.set(Calendar.SECOND, 0);
-        long timenow = System.currentTimeMillis();
-        long padding = 1000*5;
+        /*long timenow = System.currentTimeMillis();
+        long padding = 1000*5;*/
         AlarmManager medReminder = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         intent.putExtra("Title", "Diabete: "+getIntent().getStringExtra("PROG_NAME"));
@@ -264,8 +291,8 @@ public class AddMedication extends AppCompatActivity implements View.OnClickList
 
 
 
-        //medReminder.setExact(AlarmManager.RTC_WAKEUP, daterem.getTimeInMillis(), pendingIntent);
-        medReminder.setExact(AlarmManager.RTC_WAKEUP, timenow+padding, pendingIntent);
+        medReminder.setExact(AlarmManager.RTC_WAKEUP, daterem.getTimeInMillis(), pendingIntent);
+        //medReminder.setExact(AlarmManager.RTC_WAKEUP, timenow+padding, pendingIntent);
 
         Log.i("REMINDER","Reminder created");
     }

@@ -143,6 +143,10 @@ public class Medication {
         return user_id;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Boolean getIs_discarded() {
         return is_discarded;
     }

@@ -106,13 +106,10 @@
                 android:text="Duration unit:"
                 android:textColor="@color/colorPrimaryDark" />
 
-            <EditText
-                android:id="@+id/progDurUnit"
+            <Spinner
+                android:id="@+id/spinnerUnit"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/rounded_corners_edit_views"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView15"

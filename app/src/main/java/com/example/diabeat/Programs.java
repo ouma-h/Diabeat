@@ -1,9 +1,11 @@
 package com.example.diabeat;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import com.example.diabeat.apiBackend.ProgramAPI;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,6 +92,12 @@ public class Programs extends AppCompatActivity {
                         }
                     });
 
+                    v.findViewById(R.id.btnRemove).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            deletePrgoramPopUp(program.getId(), v);
+                        }
+                    });
                     ViewGroup insertPoint = (ViewGroup) findViewById(R.id.linearCards);
                     insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
                 }
@@ -99,5 +108,38 @@ public class Programs extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void deleteProgram(final Integer idProg){
+        Call<ResponseBody> call = apiHolder.deleteProgram(idProg);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Code :"+response.code(),Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Toast.makeText(getApplicationContext(),"Deleted! "+idProg.toString(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    private void deletePrgoramPopUp(final Integer idProgram, final View v){
+        new AlertDialog.Builder(this)
+                .setTitle("Delete")
+                .setMessage("Do you really want to delete this program?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        deleteProgram(idProgram);
+                        ((View)v.getParent()).setVisibility(View.GONE);
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+
     }
 }

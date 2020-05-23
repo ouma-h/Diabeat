@@ -11,8 +11,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +23,13 @@ import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.models.Medication;
 import com.example.diabeat.models.ModelProgram;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class AddProgram extends AppCompatActivity {
     // API HOLDER
@@ -43,6 +49,8 @@ public class AddProgram extends AppCompatActivity {
     private Calendar c;
     private Context ctx = this;
     private  TextView porgStartDate;
+    // Spinner
+    private Spinner pickDU;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,21 @@ public class AddProgram extends AppCompatActivity {
             }
         });
 
+        pickDU = findViewById(R.id.spinnerUnit);
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Day(s)");
+        categories.add("Week(s)");
+        categories.add("Month(s)");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        pickDU.setAdapter(dataAdapter);
         findViewById(R.id.back_arrow).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,12 +127,11 @@ public class AddProgram extends AppCompatActivity {
     public void submitProgram(){
         EditText proCondition = findViewById(R.id.progCondition);
         EditText progDuration = findViewById(R.id.progDuration);
-        EditText progDurUnit = findViewById(R.id.progDurUnit);
         EditText progStartDate = findViewById(R.id.progStartDate);
 
         condition = proCondition.getText().toString();
         duration = Integer.parseInt(progDuration.getText().toString());
-        duration_unit = progDurUnit.getText().toString();
+        duration_unit = pickDU.getSelectedItem().toString();
         start_date = progStartDate.getText().toString();
         user_id = MainActivity.getUserInfo(this).getId();
 

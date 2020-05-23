@@ -407,7 +407,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sendSMS(String temp) {
-        if(user.getEmergency_phone().length()> 0){
+        if(user.getEmergency_phone() != null){
             Uri uri = Uri.parse("smsto:"+ user.getEmergency_phone());
             Intent it = new Intent(Intent.ACTION_SENDTO, uri);
             it.putExtra("sms_body", "URGENCE! Ma température est "+ temp);

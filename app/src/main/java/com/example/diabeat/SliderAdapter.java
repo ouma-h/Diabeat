@@ -27,14 +27,14 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String[] slide_headings = {
-            "Receive Reminder",
+            "Receive Reminders",
             "Reach for Help",
             "Track your Health"
     };
 
     public String[] slide_description = {
-            "Get notified about your medications .",
-            "Get an appointment with just one click",
+            "Get notified about your medications.",
+            "Get an appointment with just one click.",
             "Track your blood pressure and temperature daily."
         };
 
