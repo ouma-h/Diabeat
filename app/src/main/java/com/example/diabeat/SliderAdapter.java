@@ -23,7 +23,7 @@ public class SliderAdapter extends PagerAdapter {
     public int[] slide_images = {
             R.drawable.ic_receive_reminders,
             R.drawable.call_doctor,
-            R.drawable.ic_trackhealth
+            R.drawable.ic_track_health
     };
 
     public String[] slide_headings = {
