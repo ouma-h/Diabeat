@@ -21,20 +21,20 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     public int[] slide_images = {
+            R.drawable.ic_receive_reminders,
             R.drawable.call_doctor,
-            R.drawable.forgot_password,
-            R.drawable.signup
+            R.drawable.ic_trackhealth
     };
 
     public String[] slide_headings = {
-            "Reach for Help",
             "Receive Reminder",
+            "Reach for Help",
             "Track your Health"
     };
 
     public String[] slide_description = {
-            "Get an appointment with just one click",
             "Get notified about your medications .",
+            "Get an appointment with just one click",
             "Track your blood pressure and temperature daily."
         };
 
