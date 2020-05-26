@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Dr.Mostfa Mounir"
+                    android:text=""
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp" />
 
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_light"
-                    android:text="General Practioner"
+                    android:text=""
                     android:textColor="@color/colorPrimaryDark" />
 
             </LinearLayout>

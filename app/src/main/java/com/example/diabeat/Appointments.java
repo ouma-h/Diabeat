@@ -1,13 +1,16 @@
 package com.example.diabeat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +21,12 @@ import com.example.diabeat.apiBackend.RetrofitClientInstance;
 import com.example.diabeat.models.Appointment;
 import com.example.diabeat.models.User;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,7 +37,6 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
 
     User user;
     AppointmentAPI appointmentAPI;
-    List<Appointment> appointmentList;
     ViewPager2 appointmentsViewPager;
     TextView nb_appointments;
 
@@ -68,6 +76,7 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 Intent spIntent = new Intent(Appointments.this, DoctorsMap.class);
                 startActivity(spIntent);
+                finish();
             }
         });
 
@@ -78,6 +87,8 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
         appointmentAPI = RetrofitClientInstance.getAppointmentApi();
         Call<List<Appointment>> call = appointmentAPI.getAppointments(user_id);
         call.enqueue(new Callback<List<Appointment>>() {
+            @SuppressLint("SetTextI18n")
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
                 if (!response.isSuccessful()) {
@@ -85,8 +96,19 @@ public class Appointments extends AppCompatActivity implements View.OnClickListe
                             Toast.LENGTH_LONG).show();
                     return;
                 }
+                List<Appointment> appointmentList = new ArrayList<>();
+                LocalDate currDate = java.time.LocalDate.now();
 
-                appointmentList = response.body();
+                for(final Appointment app : response.body()){
+                    String appDate = app.getAppDate();
+                    if(appDate.compareTo(String.valueOf(currDate)) >= 0) {
+                        System.out.println(app);
+                        appointmentList.add(app);
+                        System.out.println(appointmentList);
+                    }
+                }
+                Collections.reverse(appointmentList);
+
                 nb_appointments.setText(Integer.toString(appointmentList.size()));
                 appointmentsViewPager.setAdapter(new AppointmentCardsSlider(appointmentList) );
             }

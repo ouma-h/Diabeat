@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
+public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback , DatePickerDialog.OnDateSetListener {
 
     private static final int TAG_CODE_PERMISSION_LOCATION = 0;
     private static final int REQUEST_PHONE_CALL = 0;
@@ -70,6 +71,8 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
     private TextView dateinput;
     private DoctorAPI doctorAPIholder;
     private AppointmentAPI appointmentAPIholder;
+    private List<Doctor> currDoctor;
+    private EditText vdateinput;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -146,7 +149,7 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 bottomSheetDialog.dismiss();
-                openDoctorAppointement(doc.getId());
+                openDoctorAppointement(doc);
             }
         });
 
@@ -171,7 +174,7 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
 
     }
 
-    public void openDoctorAppointement(final Integer docID) {
+    public void openDoctorAppointement(final Doctor doc) {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                 DoctorsMap.this, R.style.BottomSheetDialogTheme
         );
@@ -179,20 +182,28 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
                 R.layout.doctor_appointemen_modal,
                 (LinearLayout) findViewById(R.id.dialog));
 
-        dateinput = bottomSheetView.findViewById(R.id.inDate);
-        dateinput.setOnClickListener(new View.OnClickListener() {
+        Integer docID = doc.getId();
+        // UPDATING TEXT
+        TextView title = bottomSheetView.findViewById(R.id.doctorName);
+        title.setText(doc.getName());
+
+        TextView docspe = bottomSheetView.findViewById(R.id.doctorSpe);
+        docspe.setText(doc.getSpeciality());
+
+        vdateinput = bottomSheetView.findViewById(R.id.inDate);
+        vdateinput.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 show_Datepicker();
             }
         });
-        dateinput.requestFocus();
+        vdateinput.requestFocus();
         Button conApp = bottomSheetView.findViewById(R.id.addApp);
         conApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addAppointment(docID);
+                addAppointment(doc, vdateinput.getText().toString());
                 bottomSheetDialog.dismiss();
             }
         });
@@ -209,6 +220,7 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onResponse(Call<List<Doctor>> call, Response<List<Doctor>> response) {
                 List<Doctor> doctors = response.body();
+                currDoctor = doctors;
                 for (final Doctor doctor : doctors) {
                     LatLng sydney = new LatLng(Float.parseFloat(doctor.getLat()), Float.parseFloat(doctor.getLng()));
                     mMap.addMarker(new MarkerOptions().position(sydney)
@@ -216,8 +228,15 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
                     mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-
-                            openDoctorDialog(doctor);
+                            String name = marker.getTitle();
+                            Log.d("MARKERCLICK", "CURRENT NAME:"+ name);
+                            for(Doctor doc : currDoctor){
+                                Log.d("MARKERCLICK", doc.getName());
+                                if(doc.getName().equals(name) ){
+                                    Log.d("MARKERCLICK", "MATCHED");
+                                    openDoctorDialog(doc);
+                                }
+                            }
                             return true;
                         }
                     });
@@ -232,9 +251,8 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
 
     }
 
-    private void addAppointment(Integer docID) {
-        String dateapp = mYear + "-" + mMonth + "-" + mDay;
-        Appointment app = new Appointment(dateapp, MainActivity.getUserInfo(this).getId(), docID);
+    private void addAppointment(Doctor doc, String dateapp) {
+        Appointment app = new Appointment(dateapp, MainActivity.getUserInfo(this).getId(), doc.getId());
         Call<Appointment> call = appointmentAPIholder.createAppointment(app);
         call.enqueue(new Callback<Appointment>() {
             @Override
@@ -257,25 +275,13 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void show_Datepicker() {
-        c = Calendar.getInstance();
-        int mYearParam = mYear;
-        int mMonthParam = mMonth - 1;
-        int mDayParam = mDay;
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(ctx,
-                new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
-                        String date = year + "-" + monthOfYear + "-" + dayOfMonth;
-                        mDay = dayOfMonth;
-                        mMonth = monthOfYear;
-                        mYear = year;
-                        dateinput.setText(date);
-                    }
-                }, mYearParam, mMonthParam, mDayParam);
-
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                java.util.Calendar.getInstance().get(java.util.Calendar.YEAR),
+                java.util.Calendar.getInstance().get(java.util.Calendar.MONTH ),
+                java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH)
+        );
         datePickerDialog.show();
     }
 
@@ -295,5 +301,12 @@ public class DoctorsMap extends FragmentActivity implements OnMapReadyCallback {
         Intent it = new Intent(Intent.ACTION_SENDTO, uri);
         it.putExtra("sms_body", "Bonjour docteur,");
         startActivity(it);
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month , int dayOfMonth) {
+        int m = month + 1;
+        String date = year + "-" + m + "-" + dayOfMonth;
+        vdateinput.setText(date);
     }
 }

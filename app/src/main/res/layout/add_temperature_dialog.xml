@@ -87,7 +87,7 @@
             android:id="@+id/dismiss"
             android:layout_width="42dp"
             android:layout_height="44dp"
-            android:background="@drawable/remove_circle"
+            android:background="@drawable/ic_close"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true" />

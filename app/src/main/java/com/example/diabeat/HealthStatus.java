@@ -320,7 +320,7 @@ public class HealthStatus extends AppCompatActivity implements View.OnClickListe
                 temp_date.setText(currentDateTime(display));
                 bottomSheetDialog.dismiss();
 
-                if(Integer.parseInt(tp)>=40){
+                if(Float.parseFloat(tp)>=40){
                     sendSMS(tp);
                 }
             }

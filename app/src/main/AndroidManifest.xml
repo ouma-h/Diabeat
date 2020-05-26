@@ -3,6 +3,9 @@
     package="com.example.diabeat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -11,11 +14,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".History" android:exported="true" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
-            android:name=".HealthStatus"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".DoctorsMap"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".Appointments"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".AddProgram"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".Programs"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".AddMedication"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".ProgramSingle"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
         <activity
             android:name=".Profile"
+
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".onBoarding"
@@ -35,13 +61,25 @@
         <activity android:name=".activity_login" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:noHistory="true"
+            />
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".AddMedication"
+            android:name=".HealthStatus"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyACJDSpD8fCwoeHIR4DsEiWyNPCWCTHqGo" />
+
+        <receiver android:name=".AlertReceiver" />
     </application>
 
 </manifest>

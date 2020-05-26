@@ -318,6 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.prescriptions_card:
                 Intent ipcard = new Intent(this, Programs.class);
                 this.startActivity(ipcard);
+                finish();
                 break;
             case R.id.logout:
                 logout(this);
